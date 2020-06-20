@@ -66,7 +66,7 @@ namespace COM3D2.PropMyItem.Plugin
 				{
 					GuiStyles._windowStyle = new GUIStyle("box");
 					GuiStyles._windowStyle.fontSize = GuiStyles.FontSize;
-					GuiStyles._windowStyle.alignment = 2;
+					GuiStyles._windowStyle.alignment = TextAnchor.UpperRight;
 					GuiStyles._windowStyle.normal.textColor = Color.white;
 				}
 				return GuiStyles._windowStyle;
@@ -83,7 +83,7 @@ namespace COM3D2.PropMyItem.Plugin
 				{
 					GuiStyles._labelStyle = new GUIStyle("label");
 					GuiStyles._labelStyle.fontSize = GuiStyles.FontSize;
-					GuiStyles._labelStyle.alignment = 3;
+					GuiStyles._labelStyle.alignment = TextAnchor.MiddleLeft;
 					GuiStyles._labelStyle.normal.textColor = Color.white;
 				}
 				return GuiStyles._labelStyle;
@@ -100,7 +100,7 @@ namespace COM3D2.PropMyItem.Plugin
 				{
 					GuiStyles._textfieldStyle = new GUIStyle("textfield");
 					GuiStyles._textfieldStyle.fontSize = GuiStyles.FontSize;
-					GuiStyles._textfieldStyle.alignment = 3;
+					GuiStyles._textfieldStyle.alignment = TextAnchor.MiddleLeft;
 					GuiStyles._textfieldStyle.normal.textColor = Color.white;
 				}
 				return GuiStyles._textfieldStyle;
@@ -117,7 +117,7 @@ namespace COM3D2.PropMyItem.Plugin
 				{
 					GuiStyles._buttonStyle = new GUIStyle("button");
 					GuiStyles._buttonStyle.fontSize = GuiStyles.FontSize;
-					GuiStyles._buttonStyle.alignment = 4;
+					GuiStyles._buttonStyle.alignment = TextAnchor.MiddleCenter;
 					GuiStyles._buttonStyle.normal.textColor = Color.white;
 				}
 				return GuiStyles._buttonStyle;

@@ -109,7 +109,7 @@ namespace COM3D2.PropMyItem.Plugin
 					byte[] array4 = binaryReader.ReadBytes(count);
 					if (string.Compare(strA, menuInfo.IconName, true) == 0)
 					{
-						menuInfo.Icon = new Texture2D(1, 1, 4, false);
+						menuInfo.Icon = new Texture2D(1, 1, TextureFormat.RGBA32, false);
 						menuInfo.Icon.LoadImage(array4);
 					}
 				}

@@ -18,7 +18,7 @@ namespace COM3D2.PropMyItem.Plugin
 			camera.transform.rotation = transform.rotation * Quaternion.Euler(90f, 0f, 90f);
 			camera.fieldOfView = 30f;
 			RenderTexture renderTexture = new RenderTexture(num, num2, 24, 0);
-			renderTexture.filterMode = 1;
+			renderTexture.filterMode = FilterMode.Bilinear;
 			renderTexture.antiAliasing = 8;
 			RenderTexture f_rtSub = new RenderTexture(num, num2, 0, 0);
 			Texture2D result = this.RenderThum(camera, renderTexture, f_rtSub, num, num2);
@@ -70,7 +70,7 @@ namespace COM3D2.PropMyItem.Plugin
 			f_cam.enabled = true;
 			f_cam.Render();
 			f_cam.enabled = false;
-			Texture2D texture2D = new Texture2D(width, height, 5, false);
+			Texture2D texture2D = new Texture2D(width, height, TextureFormat.ARGB32, false);
 			RenderTexture active = RenderTexture.active;
 			RenderTexture.active = f_rtSub;
 			GL.Clear(true, true, new Color(0f, 0f, 0f, 0f));
