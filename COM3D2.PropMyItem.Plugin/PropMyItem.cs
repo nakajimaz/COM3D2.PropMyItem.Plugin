@@ -178,7 +178,7 @@ namespace COM3D2.PropMyItem.Plugin
 			try
 			{
 				this._autoShoesHide.Update();
-				if (this._isPluginKeyChange && Event.current.type == 5)
+				if (this._isPluginKeyChange && Event.current.type == EventType.keyUp)
 				{
 					bool control = Event.current.control;
 					bool alt = Event.current.alt;
@@ -195,8 +195,9 @@ namespace COM3D2.PropMyItem.Plugin
 						return;
 					}
 				}
-				KeyCode keyCode = 105;
-				if (EnumUtil.TryParse<KeyCode>(UserConfig.Instance.GuiVisibleKey, true, out keyCode) && UserConfig.Instance.IsControlKey == Event.current.control && UserConfig.Instance.IsAltKey == Event.current.alt && UserConfig.Instance.IsShiftKey == Event.current.shift && Event.current.keyCode == keyCode && Event.current.type == 5)
+				KeyCode keyCode = KeyCode.I;// 키코드 설정
+
+				if (EnumUtil.TryParse<KeyCode>(UserConfig.Instance.GuiVisibleKey, true, out keyCode) && UserConfig.Instance.IsControlKey == Event.current.control && UserConfig.Instance.IsAltKey == Event.current.alt && UserConfig.Instance.IsShiftKey == Event.current.shift && Event.current.keyCode == keyCode && Event.current.type == EventType.KeyUp)
 				{
 					this._isVisible = !this._isVisible;
 					this._isMinimum = !this._isVisible;
@@ -212,7 +213,7 @@ namespace COM3D2.PropMyItem.Plugin
 					if (this._isVisible && this._windowRect.Contains(new Vector2(Input.mousePosition.x, (float)Screen.height - Input.mousePosition.y)))
 					{
 						GameMain.Instance.MainCamera.SetControl(false);
-						if (Event.current.type != 4 && Event.current.type != 5)
+						if (Event.current.type != EventType.keyDown && Event.current.type != EventType.keyUp)
 						{
 							Input.ResetInputAxes();
 						}
@@ -454,9 +455,9 @@ namespace COM3D2.PropMyItem.Plugin
 					Rect rect3 = new Rect(xPos, yPos + 24f, (float)(2 * GuiStyles.FontSize), GuiStyles.ControlHeight);
 					Rect rect4 = new Rect(xPos + 85f, yPos + 24f, (float)(2 * GuiStyles.FontSize), GuiStyles.ControlHeight);
 					GUI.Label(rect, visibleMaidList[this._selectedMaid].GetThumIcon(), GuiStyles.LabelStyle);
-					GuiStyles.LabelStyle.alignment = 3;
+					GuiStyles.LabelStyle.alignment = TextAnchor.MiddleLeft;
 					GUI.Label(rect2, text, GuiStyles.LabelStyle);
-					GuiStyles.LabelStyle.alignment = 4;
+					GuiStyles.LabelStyle.alignment = TextAnchor.MiddleCenter;
 					if (GUI.Button(rect3, "<", GuiStyles.ButtonStyle))
 					{
 						this._selectedMaid = ((this._selectedMaid == 0) ? (visibleMaidList.Count - 1) : (this._selectedMaid - 1));
@@ -626,7 +627,7 @@ namespace COM3D2.PropMyItem.Plugin
 					}
 					GUI.enabled = true;
 				}
-				this._folders[this._selectedFolder].Name == "プリセット";
+				//this._folders[this._selectedFolder].Name == "プリセット";
 				GUI.EndScrollView();
 				xPos += rect2.width + GuiStyles.Margin;
 			}
@@ -675,7 +676,7 @@ namespace COM3D2.PropMyItem.Plugin
 				{
 					Rect rect3 = new Rect(num3 * ((float)i % num2), num4 * (float)((int)((float)i / num2)), num3, num4);
 					new Rect(num3 * ((float)i % num2), num4 * (float)((int)((float)i / num2)), 20f, 20f);
-					if (Event.current.type == 7)
+					if (Event.current.type == EventType.Repaint)
 					{
 						if (GUI.Button(rect3, this._selectedPresetList[i].texThum))
 						{
@@ -940,7 +941,7 @@ namespace COM3D2.PropMyItem.Plugin
 			new List<int>();
 			new Rect(0f, 0f, num6, num7);
 			GUIStyle guistyle = new GUIStyle();
-			guistyle.alignment = 2;
+			guistyle.alignment = TextAnchor.UpperRight;
 			guistyle.fontSize = 10;
 			guistyle.normal = new GUIStyleState
 			{
@@ -948,25 +949,25 @@ namespace COM3D2.PropMyItem.Plugin
 			};
 			GUIStyle guistyle2 = new GUIStyle("button");
 			guistyle2.fontSize = 14;
-			guistyle2.alignment = 2;
+			guistyle2.alignment = TextAnchor.UpperRight;
 			guistyle2.normal.textColor = Color.white;
 			guistyle2.hover.textColor = Color.white;
 			guistyle2.padding = new RectOffset(0, 3, 1, 0);
 			GUIStyle guistyle3 = new GUIStyle("button");
 			guistyle3.fontSize = 14;
-			guistyle3.alignment = 2;
+			guistyle3.alignment = TextAnchor.UpperRight;
 			guistyle3.normal.textColor = Color.yellow;
 			guistyle3.hover.textColor = Color.yellow;
 			guistyle3.padding = new RectOffset(0, 3, 1, 0);
 			GUIStyle guistyle4 = new GUIStyle("button");
 			guistyle4.fontSize = 14;
-			guistyle4.alignment = 2;
+			guistyle4.alignment = TextAnchor.UpperRight;
 			guistyle4.normal.textColor = Color.white;
 			guistyle4.hover.textColor = Color.white;
 			guistyle4.padding = new RectOffset(0, 6, 1, 0);
 			GUIStyle guistyle5 = new GUIStyle("button");
 			guistyle5.fontSize = 14;
-			guistyle5.alignment = 2;
+			guistyle5.alignment = TextAnchor.UpperRight;
 			guistyle5.normal.textColor = Color.red;
 			guistyle5.hover.textColor = Color.red;
 			guistyle5.padding = new RectOffset(0, 6, 1, 0);
@@ -1040,8 +1041,8 @@ namespace COM3D2.PropMyItem.Plugin
 						Rect rect3 = new Rect(num6 * ((float)num13 % num4), num7 * (float)((int)((float)num13 / num4)), num6, num7);
 						Rect rect4 = new Rect(rect3.x, rect3.y + rect3.height - 20f, 20f, 20f);
 						Rect rect5 = new Rect(rect3.x, rect3.y, 20f, 20f);
-						Rect rect6 = new Rectr(rect3.x + rect3.width - 20f, rect3.y + rect3.height - 20f, 20f, 20f);
-						if (Event.current.type == 7)
+						Rect rect6 = new Rect(rect3.x + rect3.width - 20f, rect3.y + rect3.height - 20f, 20f, 20f);
+						if (Event.current.type == EventType.Repaint)
 						{
 							GUI.enabled = enabled;
 							if (GUI.Button(rect3, new GUIContent(menuInfo2.Icon, text2)))
@@ -1272,11 +1273,11 @@ namespace COM3D2.PropMyItem.Plugin
 				}
 			}
 			GUI.EndScrollView();
-			GuiStyles.LabelStyle.alignment = 0;
+			GuiStyles.LabelStyle.alignment = TextAnchor.UpperLeft;
 			Rect rect10 = new Rect(xPos, yPos, num6 * num4 + GuiStyles.ScrollWidth, GuiStyles.ControlHeight);
 			xPos += num5 + GuiStyles.ScrollWidth + 8f;
 			GUI.Label(rect10, GUI.tooltip, GuiStyles.LabelStyle);
-			GuiStyles.LabelStyle.alignment = 4;
+			GuiStyles.LabelStyle.alignment = TextAnchor.MiddleCenter;
 			if (this._selectedItem != null && this._selectedItem.VariationMenuList.Count > 1)
 			{
 				this.guiSelectedVariation(ref xPos, yPos, this._selectedItem, num6, num7, windowHeight, text);
@@ -1709,14 +1710,13 @@ namespace COM3D2.PropMyItem.Plugin
 		// Token: 0x0600005F RID: 95 RVA: 0x00007504 File Offset: 0x00005704
 		private void sort(bool isFilePath, bool isColorNumber)
 		{
-			Comparison<MenuInfo> <>9__0;
+
 			foreach (MPN key in this._mpnMenuListDictionary.Keys)
 			{
 				List<MenuInfo> list = this._mpnMenuListDictionary[key];
 				Comparison<MenuInfo> comparison;
-				if ((comparison = <>9__0) == null)
-				{
-					comparison = (<>9__0 = delegate(MenuInfo a, MenuInfo b)
+
+					comparison  = delegate(MenuInfo a, MenuInfo b)
 					{
 						if (isFilePath)
 						{
@@ -1738,8 +1738,8 @@ namespace COM3D2.PropMyItem.Plugin
 							return (int)a.Priority - (int)b.Priority;
 						}
 						return string.Compare(a.ItemName, b.ItemName);
-					});
-				}
+					};
+
 				list.Sort(comparison);
 				if (isColorNumber)
 				{
