@@ -4,10 +4,10 @@ using System.Text.RegularExpressions;
 
 namespace COM3D2.PropMyItem.Plugin
 {
-	// Token: 0x02000005 RID: 5
+	// Token: 0x02000004 RID: 4
 	public class CommonUtil
 	{
-		// Token: 0x06000004 RID: 4 RVA: 0x00002544 File Offset: 0x00000744
+		// Token: 0x06000003 RID: 3 RVA: 0x000022A4 File Offset: 0x000004A4
 		public static void Log(string text)
 		{
 			try
@@ -19,7 +19,7 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x06000005 RID: 5 RVA: 0x00002580 File Offset: 0x00000780
+		// Token: 0x06000004 RID: 4 RVA: 0x000022E0 File Offset: 0x000004E0
 		public static string WildCardMatchEvaluator(Match match)
 		{
 			string value = match.Value;
@@ -34,7 +34,7 @@ namespace COM3D2.PropMyItem.Plugin
 			return Regex.Escape(value);
 		}
 
-		// Token: 0x06000006 RID: 6 RVA: 0x000025C0 File Offset: 0x000007C0
+		// Token: 0x06000005 RID: 5 RVA: 0x00002320 File Offset: 0x00000520
 		public static Maid GetVisibleMaid(int index)
 		{
 			Maid result = null;
@@ -53,7 +53,7 @@ namespace COM3D2.PropMyItem.Plugin
 			return result;
 		}
 
-		// Token: 0x06000007 RID: 7 RVA: 0x00002608 File Offset: 0x00000808
+		// Token: 0x06000006 RID: 6 RVA: 0x00002368 File Offset: 0x00000568
 		public static List<Maid> GetVisibleMaidList()
 		{
 			List<Maid> list = new List<Maid>();
@@ -79,7 +79,7 @@ namespace COM3D2.PropMyItem.Plugin
 			return list;
 		}
 
-		// Token: 0x06000008 RID: 8 RVA: 0x000026BC File Offset: 0x000008BC
+		// Token: 0x06000007 RID: 7 RVA: 0x0000241C File Offset: 0x0000061C
 		public static string GetSelectedMenuFileName(MPN? mpn, Maid maid)
 		{
 			string result = string.Empty;
@@ -91,12 +91,10 @@ namespace COM3D2.PropMyItem.Plugin
 				{
 					mpn2 = mpn;
 					mpn3 = MPN.set_mywear;
-
 					if (!(mpn2.GetValueOrDefault() == mpn3 & mpn2 != null))
 					{
 						mpn2 = mpn;
 						mpn3 = MPN.set_underwear;
-
 						if (!(mpn2.GetValueOrDefault() == mpn3 & mpn2 != null))
 						{
 							result = maid.GetProp(mpn.Value).strFileName;

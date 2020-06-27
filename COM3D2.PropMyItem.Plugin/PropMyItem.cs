@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityInjector;
 using UnityInjector.Attributes;
@@ -11,7 +10,7 @@ using wf;
 
 namespace COM3D2.PropMyItem.Plugin
 {
-	// Token: 0x0200000D RID: 13
+	// Token: 0x0200000C RID: 12
 	[PluginFilter("COM3D2x64")]
 	[PluginFilter("COM3D2x86")]
 	[PluginFilter("COM3D2VRx64")]
@@ -22,7 +21,7 @@ namespace COM3D2.PropMyItem.Plugin
 	[PluginVersion("2.3.0.0")]
 	public class PropMyItem : PluginBase
 	{
-		// Token: 0x06000047 RID: 71 RVA: 0x00003594 File Offset: 0x00001794
+		// Token: 0x06000046 RID: 70 RVA: 0x000034B4 File Offset: 0x000016B4
 		public PropMyItem()
 		{
 			this._folders.Add(new PropMyItem.FolderMenu("頭", new string[]
@@ -30,7 +29,7 @@ namespace COM3D2.PropMyItem.Plugin
 				"顔",
 				"眉",
 				"目",
-				"目ハイライト", //눈 하이라이트
+				"目ハイライト",
 				"ほくろ",
 				"唇",
 				"歯"
@@ -51,11 +50,11 @@ namespace COM3D2.PropMyItem.Plugin
 				"アンダーヘア",
 				"ボディ"
 			}));
-			this._folders.Add(new PropMyItem.FolderMenu("服装", new string[] //복장
+			this._folders.Add(new PropMyItem.FolderMenu("服装", new string[]
 			{
 				"帽子",
 				"ヘッドドレス",
-				"トップス", //탑
+				"トップス",
 				"ボトムス",
 				"ワンピース",
 				"水着",
@@ -97,12 +96,11 @@ namespace COM3D2.PropMyItem.Plugin
 			}));
 			this._folders.Add(new PropMyItem.FolderMenu("全て", new string[0]));
 			this._folders.Add(new PropMyItem.FolderMenu("選択中", new string[0]));
-			// 변환 완료
 			this._categoryMPNDic.Add("顔", MPN.head);
-			this._categoryMPNDic.Add("眉", MPN.mayu);
-			this._categoryMPNDic.Add("目", MPN.eye);
+			this._categoryMPNDic.Add("眉", MPN.folder_mayu);
+			this._categoryMPNDic.Add("目", MPN.folder_eye);
 			this._categoryMPNDic.Add("目ハイライト", MPN.eye_hi);
-			this._categoryMPNDic.Add("ほくろ", MPN.eye_hi_r);
+			this._categoryMPNDic.Add("ほくろ", MPN.hokuro);
 			this._categoryMPNDic.Add("唇", MPN.lip);
 			this._categoryMPNDic.Add("歯", MPN.accha);
 			this._categoryMPNDic.Add("前髪", MPN.hairf);
@@ -110,10 +108,10 @@ namespace COM3D2.PropMyItem.Plugin
 			this._categoryMPNDic.Add("横髪", MPN.hairs);
 			this._categoryMPNDic.Add("エクステ髪", MPN.hairt);
 			this._categoryMPNDic.Add("アホ毛", MPN.hairaho);
-			this._categoryMPNDic.Add("肌", MPN.skin);
+			this._categoryMPNDic.Add("肌", MPN.folder_skin);
 			this._categoryMPNDic.Add("乳首", MPN.chikubi);
 			this._categoryMPNDic.Add("タトゥー", MPN.acctatoo);
-			this._categoryMPNDic.Add("アンダーヘア", MPN.underhair);
+			this._categoryMPNDic.Add("アンダーヘア", MPN.folder_underhair);
 			this._categoryMPNDic.Add("ボディ", MPN.body);
 			this._categoryMPNDic.Add("帽子", MPN.acchat);
 			this._categoryMPNDic.Add("ヘッドドレス", MPN.headset);
@@ -144,7 +142,6 @@ namespace COM3D2.PropMyItem.Plugin
 			this._categoryMPNDic.Add("メイド服", MPN.set_maidwear);
 			this._categoryMPNDic.Add("コスチューム", MPN.set_mywear);
 			this._categoryMPNDic.Add("下着", MPN.set_underwear);
-
 			foreach (string text in this._categoryMPNDic.Keys)
 			{
 				this._menuMPNCategoryDic.Add(this._categoryMPNDic[text], text);
@@ -156,31 +153,31 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x06000048 RID: 72 RVA: 0x00003CB0 File Offset: 0x00001EB0
+		// Token: 0x06000047 RID: 71 RVA: 0x00003BD0 File Offset: 0x00001DD0
 		public void Awake()
 		{
 			try
 			{
-				SceneManager.sceneLoaded += new UnityAction<Scene, LoadSceneMode>(this.OnSceneLoaded);
+				SceneManager.sceneLoaded += this.OnSceneLoaded;
 			}
 			catch (Exception)
 			{
 			}
 		}
 
-		// Token: 0x06000049 RID: 73 RVA: 0x00002253 File Offset: 0x00000453
+		// Token: 0x06000048 RID: 72 RVA: 0x00003C04 File Offset: 0x00001E04
 		private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
 		{
 			this._sceneLevel = scene.buildIndex;
 		}
 
-		// Token: 0x0600004A RID: 74 RVA: 0x00003CE4 File Offset: 0x00001EE4
+		// Token: 0x06000049 RID: 73 RVA: 0x00003C14 File Offset: 0x00001E14
 		public void Update()
 		{
 			try
 			{
 				this._autoShoesHide.Update();
-				if (this._isPluginKeyChange && Event.current.type == EventType.keyUp)
+				if (this._isPluginKeyChange && Event.current.type == EventType.KeyUp)
 				{
 					bool control = Event.current.control;
 					bool alt = Event.current.alt;
@@ -197,8 +194,7 @@ namespace COM3D2.PropMyItem.Plugin
 						return;
 					}
 				}
-				KeyCode keyCode = KeyCode.I;// 키코드 설정
-
+				KeyCode keyCode = KeyCode.I;
 				if (EnumUtil.TryParse<KeyCode>(UserConfig.Instance.GuiVisibleKey, true, out keyCode) && UserConfig.Instance.IsControlKey == Event.current.control && UserConfig.Instance.IsAltKey == Event.current.alt && UserConfig.Instance.IsShiftKey == Event.current.shift && Event.current.keyCode == keyCode && Event.current.type == EventType.KeyUp)
 				{
 					this._isVisible = !this._isVisible;
@@ -212,10 +208,10 @@ namespace COM3D2.PropMyItem.Plugin
 						this.LoadMenuFiles(this._isForcedInit);
 						this._isForcedInit = false;
 					}
-					if (this._isVisible && this._windowRect.Contains(new Vector2(Input.mousePosition.x, (float)Screen.height - Input.mousePosition.y)))
+					if (this._isVisible && this._windowRect.Contains(new Vector2(Input.mousePosition.x, (float)Screen.height - Input.mousePosition.y)) && this._sceneLevel != 3)
 					{
 						GameMain.Instance.MainCamera.SetControl(false);
-						if (Event.current.type != EventType.keyDown && Event.current.type != EventType.keyUp)
+						if (Event.current.type != EventType.KeyDown && Event.current.type != EventType.KeyUp)
 						{
 							Input.ResetInputAxes();
 						}
@@ -231,10 +227,10 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x0600004B RID: 75 RVA: 0x00003F14 File Offset: 0x00002114
+		// Token: 0x0600004A RID: 74 RVA: 0x00003E54 File Offset: 0x00002054
 		public void OnGUI()
 		{
-			if (!this._isVisible)
+			if (this._sceneLevel == 3 || !this._isVisible)
 			{
 				return;
 			}
@@ -251,13 +247,13 @@ namespace COM3D2.PropMyItem.Plugin
 			this._windowRect = GUI.Window(4511, this._windowRect, new GUI.WindowFunction(this.GuiFunc), "PropMyItem", GuiStyles.WindowStyle);
 		}
 
-		// Token: 0x0600004C RID: 76 RVA: 0x00003FC0 File Offset: 0x000021C0
+		// Token: 0x0600004B RID: 75 RVA: 0x00003F0C File Offset: 0x0000210C
 		private void GuiSettingFunc(int windowID)
 		{
 			this._windowRect.width = 300f;
 			float num = GuiStyles.ControlHeight + GuiStyles.Margin;
 			float margin = GuiStyles.Margin;
-			float num2 = this._windowRect.width - GuiStyles.Margin * 2f;
+			float width = this._windowRect.width - GuiStyles.Margin * 2f;
 			string text = "キー入力待機中...";
 			if (!this._isPluginKeyChange)
 			{
@@ -286,14 +282,14 @@ namespace COM3D2.PropMyItem.Plugin
 				}
 			}
 			GUI.enabled = !this._isPluginKeyChange;
-			if (GUI.Button(new Rect(margin, num, num2, GuiStyles.ControlHeight), text, GuiStyles.ButtonStyle))
+			if (GUI.Button(new Rect(margin, num, width, GuiStyles.ControlHeight), text, GuiStyles.ButtonStyle))
 			{
 				this._isPluginKeyChange = !this._isPluginKeyChange;
 			}
 			GUI.enabled = true;
 			num += GuiStyles.ControlHeight + GuiStyles.Margin + GuiStyles.Margin;
 			bool flag = UserConfig.Instance.IsAutoShoesHide;
-			flag = GUI.Toggle(new Rect(margin, num, num2, GuiStyles.ControlHeight), flag, "室内で自動的に靴を脱ぐ ", GuiStyles.ToggleStyle);
+			flag = GUI.Toggle(new Rect(margin, num, width, GuiStyles.ControlHeight), flag, "室内で自動的に靴を脱ぐ ", GuiStyles.ToggleStyle);
 			if (flag != UserConfig.Instance.IsAutoShoesHide)
 			{
 				UserConfig.Instance.IsAutoShoesHide = flag;
@@ -301,21 +297,21 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 			num += GuiStyles.ControlHeight + GuiStyles.Margin + GuiStyles.Margin;
 			bool flag2 = UserConfig.Instance.IsOutputInfoLog;
-			flag2 = GUI.Toggle(new Rect(margin, num, num2, GuiStyles.ControlHeight), flag2, "アイテム変更時のログ出力", GuiStyles.ToggleStyle);
+			flag2 = GUI.Toggle(new Rect(margin, num, width, GuiStyles.ControlHeight), flag2, "アイテム変更時のログ出力", GuiStyles.ToggleStyle);
 			if (flag2 != UserConfig.Instance.IsOutputInfoLog)
 			{
 				UserConfig.Instance.IsOutputInfoLog = flag2;
 				UserConfig.Instance.Save();
 			}
 			num += GuiStyles.ControlHeight + GuiStyles.Margin + GuiStyles.Margin;
-			if (GUI.Button(new Rect(margin, num, num2, GuiStyles.ControlHeight), "Menu/Mod 再読み込み", GuiStyles.ButtonStyle))
+			if (GUI.Button(new Rect(margin, num, width, GuiStyles.ControlHeight), "Menu/Mod 再読み込み", GuiStyles.ButtonStyle))
 			{
 				this._isShowSetting = false;
 				this._isPluginKeyChange = false;
 				this._isForcedInit = true;
 			}
 			num += GuiStyles.ControlHeight + GuiStyles.Margin + GuiStyles.Margin;
-			if (GUI.Button(new Rect(margin, num, num2, GuiStyles.ControlHeight), "戻る", GuiStyles.ButtonStyle))
+			if (GUI.Button(new Rect(margin, num, width, GuiStyles.ControlHeight), "戻る", GuiStyles.ButtonStyle))
 			{
 				this._isShowSetting = false;
 				this._isPluginKeyChange = false;
@@ -325,7 +321,7 @@ namespace COM3D2.PropMyItem.Plugin
 			GUI.DragWindow();
 		}
 
-		// Token: 0x0600004D RID: 77 RVA: 0x00004270 File Offset: 0x00002470
+		// Token: 0x0600004C RID: 76 RVA: 0x000041BC File Offset: 0x000023BC
 		private void GuiFilterSettingFunc(int windowID)
 		{
 			float num = this._windowRect.width - GuiStyles.Margin * 2f;
@@ -351,21 +347,21 @@ namespace COM3D2.PropMyItem.Plugin
 			num3 += GuiStyles.ControlHeight + GuiStyles.Margin;
 			List<string> filterTextList = UserConfig.Instance.FilterTextList;
 			int count = filterTextList.Count;
-			Rect rect =new Rect(num4, num3, num, num2 - num3 - GuiStyles.ControlHeight - (GuiStyles.Margin * 2f));
-			Rect rect2 = new Rect(0f, 0f, num - GuiStyles.ScrollWidth, (float)count * (GuiStyles.ControlHeight + GuiStyles.Margin));
-			this._scrollFilterPosition = GUI.BeginScrollView(rect, this._scrollFilterPosition, rect2);
-			Rect rect3 = new Rect(GuiStyles.Margin, 0f, rect2.width - GuiStyles.Margin - 50f, GuiStyles.ControlHeight);
-			Rect rect4 = new Rect(rect3.x + rect3.width + GuiStyles.Margin, 0f, 50f, GuiStyles.ControlHeight);
+			Rect position = new Rect(num4, num3, num, num2 - num3 - GuiStyles.ControlHeight - GuiStyles.Margin * 2f);
+			Rect viewRect = new Rect(0f, 0f, num - GuiStyles.ScrollWidth, (float)count * (GuiStyles.ControlHeight + GuiStyles.Margin));
+			this._scrollFilterPosition = GUI.BeginScrollView(position, this._scrollFilterPosition, viewRect);
+			Rect position2 = new Rect(GuiStyles.Margin, 0f, viewRect.width - GuiStyles.Margin - 50f, GuiStyles.ControlHeight);
+			Rect position3 = new Rect(position2.x + position2.width + GuiStyles.Margin, 0f, 50f, GuiStyles.ControlHeight);
 			for (int i = 0; i < filterTextList.Count; i++)
 			{
-				rect3.y = (float)i * (GuiStyles.ControlHeight + GuiStyles.Margin);
-				rect4.y = rect3.y;
-				if (GUI.Button(rect3, filterTextList[i], GuiStyles.ButtonStyle))
+				position2.y = (float)i * (GuiStyles.ControlHeight + GuiStyles.Margin);
+				position3.y = position2.y;
+				if (GUI.Button(position2, filterTextList[i], GuiStyles.ButtonStyle))
 				{
 					this._selectedFilterText = filterTextList[i];
 					this._isShowFilterSetting = false;
 				}
-				if (GUI.Button(rect4, "x", GuiStyles.ButtonStyle))
+				if (GUI.Button(position3, "x", GuiStyles.ButtonStyle))
 				{
 					UserConfig.Instance.FilterTextList.RemoveAt(i);
 					UserConfig.Instance.Save();
@@ -383,14 +379,14 @@ namespace COM3D2.PropMyItem.Plugin
 			GUI.DragWindow();
 		}
 
-		// Token: 0x0600004E RID: 78 RVA: 0x00004590 File Offset: 0x00002790
+		// Token: 0x0600004D RID: 77 RVA: 0x000044DC File Offset: 0x000026DC
 		private void GuiFunc(int windowID)
 		{
 			try
 			{
 				string text = this._isMinimum ? "" : "最小化";
-				Rect rect = new Rect(GuiStyles.Margin, 0f, (float)(GuiStyles.FontSize * (text.Length + 2)), GuiStyles.ControlHeight);
-				this._isMinimum = GUI.Toggle(rect, this._isMinimum, text, GuiStyles.ToggleStyle);
+				Rect position = new Rect(GuiStyles.Margin, 0f, (float)(GuiStyles.FontSize * (text.Length + 2)), GuiStyles.ControlHeight);
+				this._isMinimum = GUI.Toggle(position, this._isMinimum, text, GuiStyles.ToggleStyle);
 				if (this._isMinimum)
 				{
 					this._windowRect.width = 100f;
@@ -404,7 +400,7 @@ namespace COM3D2.PropMyItem.Plugin
 					this.guiSelectedMaid(ref margin, ref yPos);
 					this.guiSelectedCategoryFolder(ref margin, yPos, this._windowRect.height);
 					this.guiSelectedCategory(ref margin, yPos, this._windowRect.height);
-					if (this._folders[this._selectedFolder].Name == "プリセット") //프리셋
+					if (this._folders[this._selectedFolder].Name == "プリセット")
 					{
 						this.guiSelectedPreset(ref margin, yPos, this._windowRect.height);
 					}
@@ -414,7 +410,7 @@ namespace COM3D2.PropMyItem.Plugin
 					}
 					else
 					{
-						if (this._selectedMPN != MPN.null_mpn || this._folders[this._selectedFolder].Name == "全て" || this._folders[this._selectedFolder].Name == "選択中")//선택 중
+						if (this._selectedMPN != MPN.null_mpn || this._folders[this._selectedFolder].Name == "全て" || this._folders[this._selectedFolder].Name == "選択中")
 						{
 							this.guiSelectedItemFilter(margin, yPos);
 							this.guiSelectedItem(ref margin, yPos, this._windowRect.height);
@@ -435,7 +431,7 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x0600004F RID: 79 RVA: 0x000047B4 File Offset: 0x000029B4
+		// Token: 0x0600004E RID: 78 RVA: 0x00004700 File Offset: 0x00002900
 		private void guiSelectedMaid(ref float xPos, ref float yPos)
 		{
 			try
@@ -452,19 +448,19 @@ namespace COM3D2.PropMyItem.Plugin
 						this._selectedMaid = 0;
 					}
 					string text = visibleMaidList[this._selectedMaid].status.isFirstNameCall ? visibleMaidList[this._selectedMaid].status.firstName : visibleMaidList[this._selectedMaid].status.lastName;
-					Rect rect = new Rect(xPos + 30f, 8f, 50f, 75f);
-					Rect rect2 = new Rect(xPos + 85f, yPos, (float)(10 * GuiStyles.FontSize), GuiStyles.ControlHeight);
-					Rect rect3 = new Rect(xPos, yPos + 24f, (float)(2 * GuiStyles.FontSize), GuiStyles.ControlHeight);
-					Rect rect4 = new Rect(xPos + 85f, yPos + 24f, (float)(2 * GuiStyles.FontSize), GuiStyles.ControlHeight);
-					GUI.Label(rect, visibleMaidList[this._selectedMaid].GetThumIcon(), GuiStyles.LabelStyle);
+					Rect position = new Rect(xPos + 30f, 8f, 50f, 75f);
+					Rect position2 = new Rect(xPos + 85f, yPos, (float)(10 * GuiStyles.FontSize), GuiStyles.ControlHeight);
+					Rect position3 = new Rect(xPos, yPos + 24f, (float)(2 * GuiStyles.FontSize), GuiStyles.ControlHeight);
+					Rect position4 = new Rect(xPos + 85f, yPos + 24f, (float)(2 * GuiStyles.FontSize), GuiStyles.ControlHeight);
+					GUI.Label(position, visibleMaidList[this._selectedMaid].GetThumIcon(), GuiStyles.LabelStyle);
 					GuiStyles.LabelStyle.alignment = TextAnchor.MiddleLeft;
-					GUI.Label(rect2, text, GuiStyles.LabelStyle);
+					GUI.Label(position2, text, GuiStyles.LabelStyle);
 					GuiStyles.LabelStyle.alignment = TextAnchor.MiddleCenter;
-					if (GUI.Button(rect3, "<", GuiStyles.ButtonStyle))
+					if (GUI.Button(position3, "<", GuiStyles.ButtonStyle))
 					{
 						this._selectedMaid = ((this._selectedMaid == 0) ? (visibleMaidList.Count - 1) : (this._selectedMaid - 1));
 					}
-					if (GUI.Button(rect4, ">", GuiStyles.ButtonStyle))
+					if (GUI.Button(position4, ">", GuiStyles.ButtonStyle))
 					{
 						this._selectedMaid = ((this._selectedMaid == visibleMaidList.Count - 1) ? 0 : (this._selectedMaid + 1));
 					}
@@ -476,7 +472,7 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x06000050 RID: 80 RVA: 0x0000498C File Offset: 0x00002B8C
+		// Token: 0x0600004F RID: 79 RVA: 0x000048D8 File Offset: 0x00002AD8
 		private void updateMaidEyePosY(Maid maid, float value)
 		{
 			float num = 5000f;
@@ -491,7 +487,7 @@ namespace COM3D2.PropMyItem.Plugin
 			maid.body0.trsEyeR.localPosition = new Vector3(localPosition.x, System.Math.Min((num2 - value) / num, 0f), localPosition.z);
 		}
 
-		// Token: 0x06000051 RID: 81 RVA: 0x00004A48 File Offset: 0x00002C48
+		// Token: 0x06000050 RID: 80 RVA: 0x00004994 File Offset: 0x00002B94
 		private void guiSelectedCategoryFolder(ref float xPos, float yPos, float windowHeight)
 		{
 			float num = (float)(GuiStyles.FontSize * 6);
@@ -502,9 +498,9 @@ namespace COM3D2.PropMyItem.Plugin
 				{
 					yPos += GuiStyles.Margin * 2f;
 				}
-				Rect rect = new Rect(xPos, yPos + (num2 + GuiStyles.Margin) * (float)i, num, num2);
+				Rect position = new Rect(xPos, yPos + (num2 + GuiStyles.Margin) * (float)i, num, num2);
 				GUI.enabled = (this._selectedFolder != i);
-				if (GUI.Button(rect, this._folders[i].Name, GuiStyles.ButtonStyle))
+				if (GUI.Button(position, this._folders[i].Name, GuiStyles.ButtonStyle))
 				{
 					this._selectedFolder = i;
 					this._selectedMPN = MPN.null_mpn;
@@ -521,7 +517,7 @@ namespace COM3D2.PropMyItem.Plugin
 			xPos += num + GuiStyles.Margin;
 		}
 
-		// Token: 0x06000052 RID: 82 RVA: 0x00004B5C File Offset: 0x00002D5C
+		// Token: 0x06000051 RID: 81 RVA: 0x00004AA8 File Offset: 0x00002CA8
 		private void nextPattern(Maid maid, MPN mpn, string basename, string filename, bool isPrev = false)
 		{
 			List<MenuInfo> list = null;
@@ -575,22 +571,22 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x06000053 RID: 83 RVA: 0x00004CD0 File Offset: 0x00002ED0
+		// Token: 0x06000052 RID: 82 RVA: 0x00004C1C File Offset: 0x00002E1C
 		private void guiSelectedCategory(ref float xPos, float yPos, float windowHeight)
 		{
 			int num = this._folders[this._selectedFolder].Categories.Length;
 			if (num > 0)
 			{
-				float num2 = (float)(7 * GuiStyles.FontSize);
-				float num3 = GuiStyles.ControlHeight * 1.5f;
-				Rect rect = new Rect(0f, 0f, num2, (num3 + GuiStyles.Margin) * (float)num);
-				Rect rect2 = new Rect(xPos, yPos, rect.width + GuiStyles.ScrollWidth, windowHeight - yPos - GuiStyles.Margin);
-				this._categoryScrollPosition = GUI.BeginScrollView(rect2, this._categoryScrollPosition, rect);
+				float width = (float)(7 * GuiStyles.FontSize);
+				float num2 = GuiStyles.ControlHeight * 1.5f;
+				Rect viewRect = new Rect(0f, 0f, width, (num2 + GuiStyles.Margin) * (float)num);
+				Rect position = new Rect(xPos, yPos, viewRect.width + GuiStyles.ScrollWidth, windowHeight - yPos - GuiStyles.Margin);
+				this._categoryScrollPosition = GUI.BeginScrollView(position, this._categoryScrollPosition, viewRect);
 				for (int i = 0; i < num; i++)
 				{
-					Rect rect3 = new Rect(0f, (num3 + GuiStyles.Margin) * (float)i, num2, num3);
+					Rect position2 = new Rect(0f, (num2 + GuiStyles.Margin) * (float)i, width, num2);
 					GUI.enabled = (this._selectedCategory != i);
-					if (GUI.Button(rect3, this._folders[this._selectedFolder].Categories[i], GuiStyles.ButtonStyle))
+					if (GUI.Button(position2, this._folders[this._selectedFolder].Categories[i], GuiStyles.ButtonStyle))
 					{
 						this._selectedPresetList.Clear();
 						this._selectedItem = null;
@@ -611,7 +607,7 @@ namespace COM3D2.PropMyItem.Plugin
 								{
 									this._selectedPresetType = CharacterMgr.PresetType.Wear;
 								}
-								else if (this._folders[this._selectedFolder].Categories[i] == "身体") //신체
+								else if (this._folders[this._selectedFolder].Categories[i] == "身体")
 								{
 									this._selectedPresetType = CharacterMgr.PresetType.Body;
 								}
@@ -631,17 +627,17 @@ namespace COM3D2.PropMyItem.Plugin
 				}
 				//this._folders[this._selectedFolder].Name == "プリセット";
 				GUI.EndScrollView();
-				xPos += rect2.width + GuiStyles.Margin;
+				xPos += position.width + GuiStyles.Margin;
 			}
 		}
 
-		// Token: 0x06000054 RID: 84 RVA: 0x00002262 File Offset: 0x00000462
+		// Token: 0x06000053 RID: 83 RVA: 0x00004EB4 File Offset: 0x000030B4
 		private static int CompareCreateTime(string fileX, string fileY)
 		{
 			return DateTime.Compare(File.GetLastWriteTime(fileX), File.GetCreationTime(fileY));
 		}
 
-		// Token: 0x06000055 RID: 85 RVA: 0x00004F68 File Offset: 0x00003168
+		// Token: 0x06000054 RID: 84 RVA: 0x00004EC8 File Offset: 0x000030C8
 		private void guiDebug(ref float xPos, float yPos, float windowHeight)
 		{
 			float num = 200f;
@@ -658,7 +654,7 @@ namespace COM3D2.PropMyItem.Plugin
 			xPos += num + GuiStyles.Margin;
 		}
 
-		// Token: 0x06000056 RID: 86 RVA: 0x00004FFC File Offset: 0x000031FC
+		// Token: 0x06000055 RID: 85 RVA: 0x00004F5C File Offset: 0x0000315C
 		private void guiSelectedPreset(ref float xPos, float yPos, float windowHeight)
 		{
 			float num = 300f;
@@ -669,32 +665,31 @@ namespace COM3D2.PropMyItem.Plugin
 			{
 				int count = this._selectedPresetList.Count;
 				int num5 = ((float)count % num2 == 0f) ? 0 : 1;
-				Rect rect = new Rect(0f, 0f, num, (float)((int)((float)count / num2) + num5) * num4);
-				Rect rect2 = new Rect(xPos, yPos, rect.width + GuiStyles.ScrollWidth, windowHeight - yPos - (float)GuiStyles.FontSize);
-				this._scrollPosition = GUI.BeginScrollView(rect2, this._scrollPosition, rect);
+				Rect viewRect = new Rect(0f, 0f, num, (float)((int)((float)count / num2) + num5) * num4);
+				Rect position = new Rect(xPos, yPos, viewRect.width + GuiStyles.ScrollWidth, windowHeight - yPos - (float)GuiStyles.FontSize);
+				this._scrollPosition = GUI.BeginScrollView(position, this._scrollPosition, viewRect);
 				new List<int>();
 				new Rect(0f, 0f, num3, num4);
 				for (int i = 0; i < count; i++)
 				{
-					Rect rect3 = new Rect(num3 * ((float)i % num2), num4 * (float)((int)((float)i / num2)), num3, num4);
+					Rect position2 = new Rect(num3 * ((float)i % num2), num4 * (float)((int)((float)i / num2)), num3, num4);
 					new Rect(num3 * ((float)i % num2), num4 * (float)((int)((float)i / num2)), 20f, 20f);
 					if (Event.current.type == EventType.Repaint)
 					{
-						if (GUI.Button(rect3, this._selectedPresetList[i].texThum))
+						if (GUI.Button(position2, this._selectedPresetList[i].texThum))
 						{
 							List<Maid> visibleMaidList = CommonUtil.GetVisibleMaidList();
 							if (this._selectedMaid >= 0 && visibleMaidList.Count - 1 >= this._selectedMaid)
 							{
 								Maid maid = visibleMaidList[this._selectedMaid];
 								MPN[] array = new MPN[]
-								{  //변환
-MPN.megane		   ,
-MPN.acckami		   ,
-MPN.acckamisub	   ,
-MPN.hairt		   ,
-MPN.headset		   ,
-MPN.acchat
-
+								{
+									MPN.megane,
+									MPN.acckami,
+									MPN.acckamisub,
+									MPN.hairt,
+									MPN.headset,
+									MPN.acchat
 								};
 								this.presetRestoreDic_.Clear();
 								foreach (MPN mpn in array)
@@ -706,7 +701,7 @@ MPN.acchat
 							}
 						}
 					}
-					else if (GUI.Button(rect3, this._selectedPresetList[i].texThum))
+					else if (GUI.Button(position2, this._selectedPresetList[i].texThum))
 					{
 						List<Maid> visibleMaidList2 = CommonUtil.GetVisibleMaidList();
 						if (this._selectedMaid >= 0 && visibleMaidList2.Count - 1 >= this._selectedMaid)
@@ -714,12 +709,12 @@ MPN.acchat
 							Maid maid2 = visibleMaidList2[this._selectedMaid];
 							MPN[] array3 = new MPN[]
 							{
-MPN.megane         ,
-MPN.acckami        ,
-MPN.acckamisub     ,
-MPN.hairt          ,
-MPN.headset        ,
-MPN.acchat
+								MPN.megane,
+								MPN.acckami,
+								MPN.acckamisub,
+								MPN.hairt,
+								MPN.headset,
+								MPN.acchat
 							};
 							this.presetRestoreDic_.Clear();
 							foreach (MPN mpn2 in array3)
@@ -736,7 +731,7 @@ MPN.acchat
 			}
 		}
 
-		// Token: 0x06000057 RID: 87 RVA: 0x000052F8 File Offset: 0x000034F8
+		// Token: 0x06000056 RID: 86 RVA: 0x00005258 File Offset: 0x00003458
 		private void guiSelectedItemFilter(float xPos, float yPos)
 		{
 			float num = xPos;
@@ -758,32 +753,32 @@ MPN.acchat
 			}
 			GUI.Label(new Rect(num, num2, (float)(GuiStyles.FontSize * 6), GuiStyles.ControlHeight), "フィルタ：", GuiStyles.LabelStyle);
 			num += (float)(GuiStyles.FontSize * 5) + GuiStyles.Margin;
-			Rect rect = new Rect(num, num2 - GuiStyles.ControlHeight, (float)(GuiStyles.FontSize * 7), GuiStyles.ControlHeight);
-			this._isFavFilter = GUI.Toggle(rect, this._isFavFilter, "お気に入り", GuiStyles.ToggleStyle);
-			Rect rect2 = new Rect(num, num2, (float)(GuiStyles.FontSize * 4), GuiStyles.ControlHeight);
-			if (GUI.Button(rect2, array[this._selectedFilter], GuiStyles.ButtonStyle))
+			Rect position = new Rect(num, num2 - GuiStyles.ControlHeight, (float)(GuiStyles.FontSize * 7), GuiStyles.ControlHeight);
+			this._isFavFilter = GUI.Toggle(position, this._isFavFilter, "お気に入り", GuiStyles.ToggleStyle);
+			Rect position2 = new Rect(num, num2, (float)(GuiStyles.FontSize * 4), GuiStyles.ControlHeight);
+			if (GUI.Button(position2, array[this._selectedFilter], GuiStyles.ButtonStyle))
 			{
 				this._selectedFilter = ((this._selectedFilter == 2) ? 0 : (this._selectedFilter + 1));
 				this._scrollPosition.y = 0f;
 			}
 			num += (float)(GuiStyles.FontSize * 4) + GuiStyles.Margin;
-			Rect rect3 = new Rect(num, num2, (float)num3, GuiStyles.ControlHeight);
-			this._selectedFilterText = GUI.TextField(rect3, this._selectedFilterText, GuiStyles.TextFieldStyle);
+			Rect position3 = new Rect(num, num2, (float)num3, GuiStyles.ControlHeight);
+			this._selectedFilterText = GUI.TextField(position3, this._selectedFilterText, GuiStyles.TextFieldStyle);
 			num += (float)(num3 + 4);
-			rect2.Set(num, num2, (float)(GuiStyles.FontSize * 2), GuiStyles.ControlHeight);
-			if (GUI.Button(rect2, "▽", GuiStyles.ButtonStyle))
+			position2.Set(num, num2, (float)(GuiStyles.FontSize * 2), GuiStyles.ControlHeight);
+			if (GUI.Button(position2, "▽", GuiStyles.ButtonStyle))
 			{
 				this._isShowFilterSetting = true;
 			}
 			num += (float)(GuiStyles.FontSize * 2) + GuiStyles.Margin;
-			rect2.Set(num, num2, (float)(GuiStyles.FontSize * 2), GuiStyles.ControlHeight);
-			if (GUI.Button(rect2, "x", GuiStyles.ButtonStyle))
+			position2.Set(num, num2, (float)(GuiStyles.FontSize * 2), GuiStyles.ControlHeight);
+			if (GUI.Button(position2, "x", GuiStyles.ButtonStyle))
 			{
 				this._selectedFilterText = string.Empty;
 			}
 		}
 
-		// Token: 0x06000058 RID: 88 RVA: 0x00005504 File Offset: 0x00003704
+		// Token: 0x06000057 RID: 87 RVA: 0x00005464 File Offset: 0x00003664
 		private List<MenuInfo> getItemList()
 		{
 			List<MenuInfo> list = new List<MenuInfo>();
@@ -816,10 +811,7 @@ MPN.acchat
 					while (enumerator.MoveNext())
 					{
 						MPN mpn = enumerator.Current;
-						if (mpn != MPN.set_maidwear
- && mpn != MPN.set_mywear
- && mpn != MPN.set_underwear
-)
+						if (mpn != MPN.set_maidwear && mpn != MPN.set_mywear && mpn != MPN.set_underwear)
 						{
 							List<MenuInfo> list2 = null;
 							if (this._mpnMenuListDictionary.TryGetValue(mpn, out list2))
@@ -858,7 +850,7 @@ MPN.acchat
 			return list;
 		}
 
-		// Token: 0x06000059 RID: 89 RVA: 0x00005744 File Offset: 0x00003944
+		// Token: 0x06000058 RID: 88 RVA: 0x000056A4 File Offset: 0x000038A4
 		private void guiSelectedItem(ref float xPos, float yPos, float windowHeight)
 		{
 			List<MenuInfo> itemList = this.getItemList();
@@ -937,13 +929,13 @@ MPN.acchat
 			num8 -= num9;
 			int num10 = ((float)num8 % num4 == 0f) ? 0 : 1;
 			int num11 = (int)(windowHeight - yPos - (float)GuiStyles.FontSize - GuiStyles.ControlHeight);
-			Rect rect = new Rect(0f, 0f, num6 * num4, (float)((int)((float)num8 / num4) + num10) * num7);
+			Rect viewRect = new Rect(0f, 0f, num6 * num4, (float)((int)((float)num8 / num4) + num10) * num7);
 			if (this._folders[this._selectedFolder].Name == "選択中")
 			{
-				rect.Set(0f, 0f, num6 * num4, (float)((int)((float)(num8 + 5) / num4) + num10) * num7);
+				viewRect = new Rect(0f, 0f, num6 * num4, (float)((int)((float)(num8 + 5) / num4) + num10) * num7);
 			}
-			Rect rect2 = new Rect(xPos, yPos + GuiStyles.ControlHeight, rect.width + GuiStyles.ScrollWidth, (float)num11);
-			this._scrollPosition = GUI.BeginScrollView(rect2, this._scrollPosition, rect);
+			Rect position = new Rect(xPos, yPos + GuiStyles.ControlHeight, viewRect.width + GuiStyles.ScrollWidth, (float)num11);
+			this._scrollPosition = GUI.BeginScrollView(position, this._scrollPosition, viewRect);
 			new List<int>();
 			new Rect(0f, 0f, num6, num7);
 			GUIStyle guistyle = new GUIStyle();
@@ -1039,19 +1031,19 @@ MPN.acchat
 							menuInfo2.Icon = menuInfo4.Icon;
 						}
 						IL_637:
-						string text2 = menuInfo2.ItemName;
+						string tooltip = menuInfo2.ItemName;
 						if (this._folders[this._selectedFolder].Name == "全て" || this._folders[this._selectedFolder].Name == "選択中")
 						{
-							text2 = menuInfo2.CategoryName + "：" + menuInfo2.ItemName;
+							tooltip = menuInfo2.CategoryName + "：" + menuInfo2.ItemName;
 						}
-						Rect rect3 = new Rect(num6 * ((float)num13 % num4), num7 * (float)((int)((float)num13 / num4)), num6, num7);
-						Rect rect4 = new Rect(rect3.x, rect3.y + rect3.height - 20f, 20f, 20f);
-						Rect rect5 = new Rect(rect3.x, rect3.y, 20f, 20f);
-						Rect rect6 = new Rect(rect3.x + rect3.width - 20f, rect3.y + rect3.height - 20f, 20f, 20f);
+						Rect position2 = new Rect(num6 * ((float)num13 % num4), num7 * (float)((int)((float)num13 / num4)), num6, num7);
+						Rect position3 = new Rect(position2.x, position2.y + position2.height - 20f, 20f, 20f);
+						Rect position4 = new Rect(position2.x, position2.y, 20f, 20f);
+						Rect position5 = new Rect(position2.x + position2.width - 20f, position2.y + position2.height - 20f, 20f, 20f);
 						if (Event.current.type == EventType.Repaint)
 						{
 							GUI.enabled = enabled;
-							if (GUI.Button(rect3, new GUIContent(menuInfo2.Icon, text2)))
+							if (GUI.Button(position2, new GUIContent(menuInfo2.Icon, tooltip)))
 							{
 								this._selectedItem = menuInfo2;
 								this._selectedVariationItem = menuInfo2.VariationMenuList[0];
@@ -1063,11 +1055,7 @@ MPN.acchat
 										Console.WriteLine("PropMyItem：change item = " + menuInfo2.FileName);
 									}
 									visibleMaidList2[this._selectedMaid].SetProp(menuInfo2.MPN, menuInfo2.FileName, Path.GetFileName(menuInfo2.FileName).GetHashCode(), false, false);
-									if ((menuInfo2.MPN == MPN.eye   ||
-										 menuInfo2.MPN == MPN.mayu ||
-										 menuInfo2.MPN == MPN.skin	||
-										 menuInfo2.MPN == MPN.underhair ||
-										 menuInfo2.MPN == MPN.chikubi) && menuInfo2.ColorSetMenuList.Count > 0)
+									if ((menuInfo2.MPN == MPN.folder_eye || menuInfo2.MPN == MPN.folder_mayu || menuInfo2.MPN == MPN.folder_skin || menuInfo2.MPN == MPN.folder_underhair || menuInfo2.MPN == MPN.chikubi) && menuInfo2.ColorSetMenuList.Count > 0)
 									{
 										MenuInfo menuInfo5 = this._selectedVariationItem.ColorSetMenuList[0];
 										visibleMaidList2[this._selectedMaid].SetProp(menuInfo2.ColorSetMPN, menuInfo5.FileName, Path.GetFileName(menuInfo5.FileName).GetHashCode(), false, false);
@@ -1076,12 +1064,12 @@ MPN.acchat
 								}
 							}
 							GUI.enabled = true;
-							GUIStyle guistyle6 = guistyle2;
+							GUIStyle style = guistyle2;
 							if (menuInfo2.IsFavorite)
 							{
-								guistyle6 = guistyle3;
+								style = guistyle3;
 							}
-							if (GUI.Button(rect4, new GUIContent("★", text2), guistyle6))
+							if (GUI.Button(position3, new GUIContent("★", tooltip), style))
 							{
 								if (menuInfo2.IsFavorite)
 								{
@@ -1097,17 +1085,17 @@ MPN.acchat
 							}
 							if (this._folders[this._selectedFolder].Name == "選択中")
 							{
-								if (GUI.Button(rect5, new GUIContent("×", text2)))
+								if (GUI.Button(position4, new GUIContent("×", tooltip)))
 								{
 									maid.DelProp(menuInfo2.MPN, false);
 									maid.AllProcProp();
 								}
-								GUIStyle guistyle7 = guistyle4;
+								GUIStyle style2 = guistyle4;
 								if (menuInfo2.IsColorLock)
 								{
-									guistyle7 = guistyle5;
+									style2 = guistyle5;
 								}
-								if (GUI.Button(rect6, new GUIContent("■", text2), guistyle7))
+								if (GUI.Button(position5, new GUIContent("■", tooltip), style2))
 								{
 									if (menuInfo2.IsColorLock)
 									{
@@ -1127,17 +1115,17 @@ MPN.acchat
 						{
 							if (this._folders[this._selectedFolder].Name == "選択中")
 							{
-								if (GUI.Button(rect5, new GUIContent("×", text2)))
+								if (GUI.Button(position4, new GUIContent("×", tooltip)))
 								{
 									maid.DelProp(menuInfo2.MPN, false);
 									maid.AllProcProp();
 								}
-								GUIStyle guistyle8 = guistyle4;
+								GUIStyle style3 = guistyle4;
 								if (menuInfo2.IsColorLock)
 								{
-									guistyle8 = guistyle5;
+									style3 = guistyle5;
 								}
-								if (GUI.Button(rect6, new GUIContent("■", text2), guistyle8))
+								if (GUI.Button(position5, new GUIContent("■", tooltip), style3))
 								{
 									if (menuInfo2.IsColorLock)
 									{
@@ -1152,12 +1140,12 @@ MPN.acchat
 									UserConfig.Instance.Save();
 								}
 							}
-							GUIStyle guistyle9 = guistyle2;
+							GUIStyle style4 = guistyle2;
 							if (menuInfo2.IsFavorite)
 							{
-								guistyle9 = guistyle3;
+								style4 = guistyle3;
 							}
-							if (GUI.Button(rect4, new GUIContent("★", text2), guistyle9))
+							if (GUI.Button(position3, new GUIContent("★", tooltip), style4))
 							{
 								if (menuInfo2.IsFavorite)
 								{
@@ -1172,7 +1160,7 @@ MPN.acchat
 								UserConfig.Instance.Save();
 							}
 							GUI.enabled = enabled;
-							if (GUI.Button(rect3, new GUIContent(menuInfo2.Icon, text2)))
+							if (GUI.Button(position2, new GUIContent(menuInfo2.Icon, tooltip)))
 							{
 								this._selectedItem = menuInfo2;
 								this._selectedVariationItem = menuInfo2.VariationMenuList[0];
@@ -1184,11 +1172,7 @@ MPN.acchat
 										Console.WriteLine("PropMyItem：change item = " + menuInfo2.FileName);
 									}
 									visibleMaidList3[this._selectedMaid].SetProp(menuInfo2.MPN, menuInfo2.FileName, Path.GetFileName(menuInfo2.FileName).GetHashCode(), false, false);
-									if ((menuInfo2.MPN == MPN.eye ||
-										 menuInfo2.MPN == MPN.mayu ||
-										 menuInfo2.MPN == MPN.skin ||
-										 menuInfo2.MPN == MPN.underhair ||
-										 menuInfo2.MPN == MPN.chikubi) && menuInfo2.ColorSetMenuList.Count > 0)
+									if ((menuInfo2.MPN == MPN.folder_eye || menuInfo2.MPN == MPN.folder_mayu || menuInfo2.MPN == MPN.folder_skin || menuInfo2.MPN == MPN.folder_underhair || menuInfo2.MPN == MPN.chikubi) && menuInfo2.ColorSetMenuList.Count > 0)
 									{
 										MenuInfo menuInfo6 = this._selectedVariationItem.ColorSetMenuList[0];
 										visibleMaidList3[this._selectedMaid].SetProp(menuInfo2.ColorSetMPN, menuInfo6.FileName, Path.GetFileName(menuInfo6.FileName).GetHashCode(), false, false);
@@ -1201,15 +1185,12 @@ MPN.acchat
 						int count = menuInfo2.VariationMenuList.Count;
 						if (count > 1)
 						{
-							Rect rect7 = new Rect(rect3.x + rect3.width - num, rect3.y + num3, 10f, 10f);
-							if (menuInfo2.MPN == MPN.set_maidwear
- || menuInfo2.MPN == MPN.set_mywear
- || menuInfo2.MPN == MPN.set_underwear
-)
+							Rect position6 = new Rect(position2.x + position2.width - num, position2.y + num3, 10f, 10f);
+							if (menuInfo2.MPN == MPN.set_maidwear || menuInfo2.MPN == MPN.set_mywear || menuInfo2.MPN == MPN.set_underwear)
 							{
-								rect7.Set(rect3.x + rect3.width - num2, rect3.y + num3, 10f, 10f);
+								position6 = new Rect(position2.x + position2.width - num2, position2.y + num3, 10f, 10f);
 							}
-							GUI.Label(rect7, count.ToString(), guistyle);
+							GUI.Label(position6, count.ToString(), guistyle);
 						}
 					}
 					num13++;
@@ -1220,68 +1201,67 @@ MPN.acchat
 			{
 				float num16 = num7 * (float)((int)((float)num13 / num4));
 				num16 = (((float)num13 % num4 == 0f) ? num16 : (num16 + num7));
-				Rect rect8 = new Rect(0f, num16, num6 * 2f, num7);
-				Rect rect9 = new Rect(num6 * 3f, num16, num6 * 2f, num7);
+				Rect position7 = new Rect(0f, num16, num6 * 2f, num7);
+				Rect position8 = new Rect(num6 * 3f, num16, num6 * 2f, num7);
 				MPN[] array = new MPN[]
-				{	// 변환 완료
-					MPN.acchat	  ,
-					MPN.headset	  ,
-					MPN.wear	  ,
-					MPN.skirt	  ,
-					MPN.onepiece  ,
-					MPN.mizugi	  ,
-					MPN.bra		  ,
-					MPN.panz	  ,
-					MPN.stkg	  ,
-					MPN.shoes	  ,
-					MPN.acckami	  ,
-					MPN.megane	  ,
-					MPN.acchead	  ,
-					MPN.acchana	  ,
-					MPN.accmimi	  ,
-					MPN.glove	  ,
-					MPN.acckubi	  ,
-					MPN.acckubiwa ,
+				{
+					MPN.acchat,
+					MPN.headset,
+					MPN.wear,
+					MPN.skirt,
+					MPN.onepiece,
+					MPN.mizugi,
+					MPN.bra,
+					MPN.panz,
+					MPN.stkg,
+					MPN.shoes,
+					MPN.acckami,
+					MPN.megane,
+					MPN.acchead,
+					MPN.acchana,
+					MPN.accmimi,
+					MPN.glove,
+					MPN.acckubi,
+					MPN.acckubiwa,
 					MPN.acckamisub,
-					MPN.accnip	  ,
-					MPN.accude	  ,
-					MPN.accheso	  ,
-					MPN.accashi	  ,
-					MPN.accsenaka ,
-					MPN.accshippo ,
+					MPN.accnip,
+					MPN.accude,
+					MPN.accheso,
+					MPN.accashi,
+					MPN.accsenaka,
+					MPN.accshippo,
 					MPN.accxxx
-
 				};
-				if (GUI.Button(rect8, "카라 발리 변경(前)", GuiStyles.ButtonStyle) && maid != null)
+				if (GUI.Button(position7, "カラバリ変更(前)", GuiStyles.ButtonStyle) && maid != null)
 				{
 					foreach (MPN mpn in array)
 					{
 						MaidProp prop = maid.GetProp(mpn);
-						string text3 = prop.strFileName.ToLower();
+						string text2 = prop.strFileName.ToLower();
 						string basename = prop.strFileName.ToLower();
-						if (Regex.IsMatch(text3, "_z\\d{1,4}"))
+						if (Regex.IsMatch(text2, "_z\\d{1,4}"))
 						{
-							Match match = Regex.Match(text3, "_z\\d{1,4}");
-							basename = text3.Replace(match.Value, "");
+							Match match = Regex.Match(text2, "_z\\d{1,4}");
+							basename = text2.Replace(match.Value, "");
 						}
-						this.nextPattern(maid, mpn, basename, text3, true);
+						this.nextPattern(maid, mpn, basename, text2, true);
 					}
 				}
-				if (GUI.Button(rect9, "カラバリ変更(後)", GuiStyles.ButtonStyle) && maid != null)
+				if (GUI.Button(position8, "カラバリ変更(後)", GuiStyles.ButtonStyle) && maid != null)
 				{
 					foreach (MPN mpn2 in array)
 					{
 						try
 						{
 							MaidProp prop2 = maid.GetProp(mpn2);
-							string text4 = prop2.strFileName.ToLower();
+							string text3 = prop2.strFileName.ToLower();
 							string basename2 = prop2.strFileName.ToLower();
-							if (Regex.IsMatch(text4, "_z\\d{1,4}"))
+							if (Regex.IsMatch(text3, "_z\\d{1,4}"))
 							{
-								Match match2 = Regex.Match(text4, "_z\\d{1,4}");
-								basename2 = text4.Replace(match2.Value, "");
+								Match match2 = Regex.Match(text3, "_z\\d{1,4}");
+								basename2 = text3.Replace(match2.Value, "");
 							}
-							this.nextPattern(maid, mpn2, basename2, text4, false);
+							this.nextPattern(maid, mpn2, basename2, text3, false);
 						}
 						catch (Exception ex)
 						{
@@ -1292,9 +1272,9 @@ MPN.acchat
 			}
 			GUI.EndScrollView();
 			GuiStyles.LabelStyle.alignment = TextAnchor.UpperLeft;
-			Rect rect10 = new Rect(xPos, yPos, num6 * num4 + GuiStyles.ScrollWidth, GuiStyles.ControlHeight);
+			Rect position9 = new Rect(xPos, yPos, num6 * num4 + GuiStyles.ScrollWidth, GuiStyles.ControlHeight);
 			xPos += num5 + GuiStyles.ScrollWidth + 8f;
-			GUI.Label(rect10, GUI.tooltip, GuiStyles.LabelStyle);
+			GUI.Label(position9, GUI.tooltip, GuiStyles.LabelStyle);
 			GuiStyles.LabelStyle.alignment = TextAnchor.MiddleCenter;
 			if (this._selectedItem != null && this._selectedItem.VariationMenuList.Count > 1)
 			{
@@ -1302,13 +1282,13 @@ MPN.acchat
 			}
 		}
 
-		// Token: 0x0600005A RID: 90 RVA: 0x000067EC File Offset: 0x000049EC
+		// Token: 0x06000059 RID: 89 RVA: 0x0000674C File Offset: 0x0000494C
 		private void guiSelectedVariation(ref float posX, float posY, MenuInfo itemMenuInfo, float iconWidth, float iconHeight, float windowHeight, string selectedFileName)
 		{
 			int count = itemMenuInfo.VariationMenuList.Count;
-			Rect rect = new Rect(0f, 0f, iconWidth, (float)count * (iconWidth + 4f));
-			Rect rect2 = new Rect(posX, posY + GuiStyles.ControlHeight, rect.width + GuiStyles.ScrollWidth, windowHeight - posY - (float)GuiStyles.FontSize - GuiStyles.ControlHeight);
-			this._colorItemScrollPosition = GUI.BeginScrollView(rect2, this._colorItemScrollPosition, rect);
+			Rect viewRect = new Rect(0f, 0f, iconWidth, (float)count * (iconWidth + 4f));
+			Rect position = new Rect(posX, posY + GuiStyles.ControlHeight, viewRect.width + GuiStyles.ScrollWidth, windowHeight - posY - (float)GuiStyles.FontSize - GuiStyles.ControlHeight);
+			this._colorItemScrollPosition = GUI.BeginScrollView(position, this._colorItemScrollPosition, viewRect);
 			new Rect(0f, 0f, iconWidth, iconWidth);
 			int i = 0;
 			while (i < count)
@@ -1338,16 +1318,16 @@ MPN.acchat
 				i++;
 				continue;
 				IL_103:
-				string text = menuInfo.ItemName;
+				string tooltip = menuInfo.ItemName;
 				if (this._folders[this._selectedFolder].Name == "全て" || this._folders[this._selectedFolder].Name == "選択中")
 				{
-					text = menuInfo.CategoryName + "：" + menuInfo.ItemName;
+					tooltip = menuInfo.CategoryName + "：" + menuInfo.ItemName;
 				}
 				if (!string.IsNullOrEmpty(selectedFileName) && menuInfo.FileName.IndexOf(selectedFileName, StringComparison.OrdinalIgnoreCase) == 0)
 				{
 					GUI.enabled = false;
 				}
-				if (GUI.Button(new Rect(0f, (iconWidth + 4f) * (float)i, iconWidth, iconWidth), new GUIContent(menuInfo.Icon, text)))
+				if (GUI.Button(new Rect(0f, (iconWidth + 4f) * (float)i, iconWidth, iconWidth), new GUIContent(menuInfo.Icon, tooltip)))
 				{
 					this._selectedVariationItem = menuInfo;
 					List<Maid> visibleMaidList = CommonUtil.GetVisibleMaidList();
@@ -1368,7 +1348,7 @@ MPN.acchat
 			posX += iconWidth + GuiStyles.ScrollWidth + 8f;
 		}
 
-		// Token: 0x0600005B RID: 91 RVA: 0x00006A80 File Offset: 0x00004C80
+		// Token: 0x0600005A RID: 90 RVA: 0x000069E0 File Offset: 0x00004BE0
 		private void guiSelectedColorSet(ref float posX, ref float posY)
 		{
 			if (this._selectedVariationItem != null && this._selectedVariationItem.ColorSetMenuList.Count > 0)
@@ -1448,7 +1428,7 @@ MPN.acchat
 			this._isFreeColor = false;
 		}
 
-		// Token: 0x0600005C RID: 92 RVA: 0x00006CF0 File Offset: 0x00004EF0
+		// Token: 0x0600005B RID: 91 RVA: 0x00006C50 File Offset: 0x00004E50
 		private void guiSelectedMugenColor(ref float posX, ref float posY)
 		{
 			if (this._isFreeColor)
@@ -1465,45 +1445,44 @@ MPN.acchat
 					MaidParts.PARTS_COLOR parts_COLOR = MaidParts.PARTS_COLOR.SKIN;
 					MPN mpn = this._selectedItem.MPN;
 					switch (mpn)
-					{	// 변환 예정
-						// todo
-					case MPN.MabutaUpIn:
-					case MPN.MabutaUpIn2:
-					case MPN.MabutaUpMiddle:
-					case MPN.MabutaUpOut:
-					case MPN.MabutaUpOut2:
-					case MPN.MabutaLowIn:
-						parts_COLOR = MaidParts.PARTS_COLOR.HAIR;
-						goto IL_187;
-					case MPN.MabutaLowUpMiddle:
-						break;
-					case MPN.MabutaLowUpOut:
-					case MPN.body:
-					case MPN.head:
+					{
+					case MPN.hairf:
 					case MPN.hairr:
+					case MPN.hairt:
 					case MPN.hairs:
 					case MPN.hairaho:
-						goto IL_187;
-					case MPN.moza:
-						goto IL_EE;
-					case MPN.hairf:
-						goto IL_FE;
-					case MPN.hairt:
-						goto IL_106;
 					case MPN.haircolor:
+						parts_COLOR = MaidParts.PARTS_COLOR.HAIR;
+						goto IL_187;
 					case MPN.skin:
+						break;
+					case MPN.acctatoo:
+					case MPN.accnail:
+					case MPN.hokuro:
+					case MPN.lip:
+					case MPN.eye_hi:
+					case MPN.eye_hi_r:
+						goto IL_187;
+					case MPN.underhair:
+						goto IL_EE;
+					case MPN.mayu:
+						goto IL_FE;
+					case MPN.eye:
+						goto IL_106;
+					case MPN.chikubi:
+					case MPN.chikubicolor:
 						parts_COLOR = MaidParts.PARTS_COLOR.NIPPLE;
 						goto IL_187;
 					default:
 						switch (mpn)
 						{
-						case MPN.accashi:
+						case MPN.folder_eye:
 							goto IL_106;
-						case MPN.accsenaka:
+						case MPN.folder_mayu:
 							goto IL_FE;
-						case MPN.accshippo:
+						case MPN.folder_underhair:
 							goto IL_EE;
-						case MPN.accanl:
+						case MPN.folder_skin:
 							break;
 						default:
 							goto IL_187;
@@ -1582,27 +1561,27 @@ MPN.acchat
 					for (int i = 0; i < array.Length; i++)
 					{
 						float num3 = num + (float)i * (num2 * 2f + 8f);
-						Rect rect = new Rect(posX, num3, (float)(fontSize * array[i].Length), num2);
-						Rect rect2 = new Rect(posX + (float)(fontSize * array[i].Length + 4), num3, (float)(fontSize * 4), num2);
-						Rect rect3 = new Rect(posX, num3 + num2, (float)(fontSize * 2), num2);
-						Rect rect4 = new Rect(posX + (float)(fontSize * 2) + 4f, num3 + num2 + (float)((double)num2 * 0.25), 80f, num2);
-						Rect rect5 = new Rect(posX + 80f + (float)(fontSize * 2) + 8f, num3 + num2, (float)(fontSize * 2), num2);
-						GUI.Label(rect, array[i], labelStyle);
-						GUI.Label(rect2, array2[i].ToString(), labelStyle);
-						float num4 = (float)((int)GUI.HorizontalSlider(rect4, (float)array2[i], 0f, (float)array3[i]));
+						Rect position = new Rect(posX, num3, (float)(fontSize * array[i].Length), num2);
+						Rect position2 = new Rect(posX + (float)(fontSize * array[i].Length + 4), num3, (float)(fontSize * 4), num2);
+						Rect position3 = new Rect(posX, num3 + num2, (float)(fontSize * 2), num2);
+						Rect position4 = new Rect(posX + (float)(fontSize * 2) + 4f, num3 + num2 + (float)((double)num2 * 0.25), 80f, num2);
+						Rect position5 = new Rect(posX + 80f + (float)(fontSize * 2) + 8f, num3 + num2, (float)(fontSize * 2), num2);
+						GUI.Label(position, array[i], labelStyle);
+						GUI.Label(position2, array2[i].ToString(), labelStyle);
+						float num4 = (float)((int)GUI.HorizontalSlider(position4, (float)array2[i], 0f, (float)array3[i]));
 						if (num4 != (float)array2[i])
 						{
 							array2[i] = (int)num4;
 							this.changeColor(partsColor, parts_COLOR, array2, maid);
 						}
-						if (GUI.Button(rect3, "-", buttonStyle))
+						if (GUI.Button(position3, "-", buttonStyle))
 						{
 							int num5 = array2[i] - 1;
 							num5 = ((num5 < 0) ? 0 : num5);
 							array2[i] = num5;
 							this.changeColor(partsColor, parts_COLOR, array2, maid);
 						}
-						if (GUI.Button(rect5, "+", buttonStyle))
+						if (GUI.Button(position5, "+", buttonStyle))
 						{
 							int num6 = array2[i] + 1;
 							num6 = ((num6 > array3[i]) ? array3[i] : num6);
@@ -1615,7 +1594,7 @@ MPN.acchat
 			}
 		}
 
-		// Token: 0x0600005D RID: 93 RVA: 0x00007120 File Offset: 0x00005320
+		// Token: 0x0600005C RID: 92 RVA: 0x00007080 File Offset: 0x00005280
 		private void changeColor(MaidParts.PartsColor partsColor, MaidParts.PARTS_COLOR partsColorType, int[] values, Maid maid)
 		{
 			partsColor.m_nMainHue = values[0];
@@ -1643,7 +1622,7 @@ MPN.acchat
 			}
 		}
 
-		// Token: 0x0600005E RID: 94 RVA: 0x00007208 File Offset: 0x00005408
+		// Token: 0x0600005D RID: 93 RVA: 0x00007168 File Offset: 0x00005368
 		public void LoadMenuFiles(bool isInit = false)
 		{
 			try
@@ -1674,7 +1653,7 @@ MPN.acchat
 				IL_CA:
 				if (dictionary.Count == 0)
 				{
-					Console.Write("PropMyItem：준비 중...");
+					Console.Write("PropMyItem：準備中...");
 				}
 				Dictionary<string, string> dictionary2 = new Dictionary<string, string>();
 				foreach (string text in UserConfig.Instance.FavList)
@@ -1702,7 +1681,7 @@ MPN.acchat
 				Config.Instance.Save();
 				if (dictionary.Count == 0)
 				{
-					Console.WriteLine("PropMyItem：완료");
+					Console.WriteLine("PropMyItem：完了");
 				}
 				this._selectedFolder = 0;
 				this._selectedMPN = MPN.null_mpn;
@@ -1726,16 +1705,16 @@ MPN.acchat
 			}
 		}
 
-		// Token: 0x0600005F RID: 95 RVA: 0x00007504 File Offset: 0x00005704
+		// Token: 0x0600005E RID: 94 RVA: 0x00007464 File Offset: 0x00005664
 		private void sort(bool isFilePath, bool isColorNumber)
 		{
-
+			Comparison<MenuInfo> info;
 			foreach (MPN key in this._mpnMenuListDictionary.Keys)
 			{
 				List<MenuInfo> list = this._mpnMenuListDictionary[key];
 				Comparison<MenuInfo> comparison;
 
-					comparison  = delegate(MenuInfo a, MenuInfo b)
+					comparison = (info = delegate(MenuInfo a, MenuInfo b)
 					{
 						if (isFilePath)
 						{
@@ -1757,7 +1736,7 @@ MPN.acchat
 							return (int)a.Priority - (int)b.Priority;
 						}
 						return string.Compare(a.ItemName, b.ItemName);
-					};
+					});
 
 				list.Sort(comparison);
 				if (isColorNumber)
@@ -1780,16 +1759,13 @@ MPN.acchat
 			}
 		}
 
-		// Token: 0x06000060 RID: 96 RVA: 0x00007618 File Offset: 0x00005818
+		// Token: 0x0600005F RID: 95 RVA: 0x00007578 File Offset: 0x00005778
 		private void GetMainMenuFiles(ref List<MenuInfo> variationMenuList, Dictionary<string, MenuInfo> loadItems, Dictionary<string, string> favDic, Dictionary<string, string> colorLockDic, ref List<SMenuInfo> saveItems)
 		{
 			ReadOnlyDictionary<string, bool> havePartsItems = GameMain.Instance.CharacterMgr.status.havePartsItems;
 			string[] menuFiles = GameUty.MenuFiles;
 			this._menuList.Clear();
 			string[] files = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.menu", SearchOption.AllDirectories);
-
-			Console.WriteLine("GetMainMenuFiles:" + Directory.GetCurrentDirectory());
-
 			Dictionary<string, string> dictionary = new Dictionary<string, string>();
 			foreach (string text in files)
 			{
@@ -1798,10 +1774,6 @@ MPN.acchat
 				{
 					dictionary.Add(key, text);
 				}
-
-				//Console.WriteLine("GetMainMenuFiles:" + key +","+ text);
-				//tomo_hairp.menu,F:\COM3D2\Mod\COM3D2_mod\세트 캐릭터\CG007\Tomo_Fujii\Tomo_hair\Tomo_hairP.menu
-
 			}
 			List<string> list = new List<string>();
 			foreach (string text2 in menuFiles)
@@ -1836,7 +1808,6 @@ MPN.acchat
 									{
 										menuInfo.IsShopTarget = false;
 									}
-
 									string filePath = text2;
 									if (dictionary.TryGetValue(fileName, out filePath))
 									{
@@ -1848,7 +1819,6 @@ MPN.acchat
 										menuInfo.IsMod = false;
 										menuInfo.FilePath = fileName;
 									}
-
 									string empty = string.Empty;
 									if (this._menuMPNCategoryDic.TryGetValue(menuInfo.MPN, out empty))
 									{
@@ -1888,7 +1858,7 @@ MPN.acchat
 			}
 		}
 
-		// Token: 0x06000061 RID: 97 RVA: 0x000078FC File Offset: 0x00005AFC
+		// Token: 0x06000060 RID: 96 RVA: 0x0000785C File Offset: 0x00005A5C
 		private void GetModFiles(ref List<MenuInfo> variationMenuList, Dictionary<string, MenuInfo> loadItems, Dictionary<string, string> favDic, Dictionary<string, string> colorLockDic, ref List<SMenuInfo> saveItems)
 		{
 			List<string> list = new List<string>();
@@ -1954,7 +1924,7 @@ MPN.acchat
 			}
 		}
 
-		// Token: 0x06000062 RID: 98 RVA: 0x00007B2C File Offset: 0x00005D2C
+		// Token: 0x06000061 RID: 97 RVA: 0x00007A8C File Offset: 0x00005C8C
 		private void SetVariationMenu(Dictionary<string, string> favDic, Dictionary<string, string> colorLockDic, ref List<MenuInfo> variationMenuList)
 		{
 			List<MenuInfo> list = new List<MenuInfo>();
@@ -2013,7 +1983,7 @@ MPN.acchat
 			}
 		}
 
-		// Token: 0x06000063 RID: 99 RVA: 0x00007D90 File Offset: 0x00005F90
+		// Token: 0x06000062 RID: 98 RVA: 0x00007CF0 File Offset: 0x00005EF0
 		private void setColorSet()
 		{
 			foreach (MPN key in this._mpnMenuListDictionary.Keys)
@@ -2046,131 +2016,131 @@ MPN.acchat
 			}
 		}
 
-		// Token: 0x0400003D RID: 61
+		// Token: 0x0400003A RID: 58
 		private int _sceneLevel;
 
-		// Token: 0x0400003E RID: 62
+		// Token: 0x0400003B RID: 59
 		private Rect _windowRect;
 
-		// Token: 0x0400003F RID: 63
+		// Token: 0x0400003C RID: 60
 		private AutoShoesHide _autoShoesHide = new AutoShoesHide();
 
-		// Token: 0x04000040 RID: 64
+		// Token: 0x0400003D RID: 61
 		private bool _isMinimum;
 
-		// Token: 0x04000041 RID: 65
+		// Token: 0x0400003E RID: 62
 		private bool _isVisible;
 
-		// Token: 0x04000042 RID: 66
+		// Token: 0x0400003F RID: 63
 		private bool _isPluginKeyChange;
 
-		// Token: 0x04000043 RID: 67
+		// Token: 0x04000040 RID: 64
 		private bool _isShowSetting;
 
-		// Token: 0x04000044 RID: 68
+		// Token: 0x04000041 RID: 65
 		private bool _isShowFilterSetting;
 
-		// Token: 0x04000045 RID: 69
+		// Token: 0x04000042 RID: 66
 		private string _selectedFilterText = string.Empty;
 
-		// Token: 0x04000046 RID: 70
+		// Token: 0x04000043 RID: 67
 		private Vector2 _scrollFilterPosition;
 
-		// Token: 0x04000047 RID: 71
+		// Token: 0x04000044 RID: 68
 		private Vector2 _categoryScrollPosition;
 
-		// Token: 0x04000048 RID: 72
+		// Token: 0x04000045 RID: 69
 		private Vector2 _scrollPosition;
 
-		// Token: 0x04000049 RID: 73
+		// Token: 0x04000046 RID: 70
 		private Vector2 _colorItemScrollPosition;
 
-		// Token: 0x0400004A RID: 74
+		// Token: 0x04000047 RID: 71
 		private List<PropMyItem.FolderMenu> _folders = new List<PropMyItem.FolderMenu>();
 
-		// Token: 0x0400004B RID: 75
+		// Token: 0x04000048 RID: 72
 		private int _selectedMaid;
 
-		// Token: 0x0400004C RID: 76
+		// Token: 0x04000049 RID: 73
 		private int _selectedFolder;
 
-		// Token: 0x0400004D RID: 77
+		// Token: 0x0400004A RID: 74
 		private MPN _selectedMPN;
 
-		// Token: 0x0400004E RID: 78
+		// Token: 0x0400004B RID: 75
 		private int _selectedCategory = -1;
 
-		// Token: 0x0400004F RID: 79
+		// Token: 0x0400004C RID: 76
 		private MenuInfo _selectedItem;
 
-		// Token: 0x04000050 RID: 80
+		// Token: 0x0400004D RID: 77
 		private MenuInfo _selectedVariationItem;
 
-		// Token: 0x04000051 RID: 81
+		// Token: 0x0400004E RID: 78
 		private Dictionary<string, MPN> _categoryMPNDic = new Dictionary<string, MPN>();
 
-		// Token: 0x04000052 RID: 82
+		// Token: 0x0400004F RID: 79
 		private Dictionary<MPN, string> _menuMPNCategoryDic = new Dictionary<MPN, string>();
 
-		// Token: 0x04000053 RID: 83
+		// Token: 0x04000050 RID: 80
 		private List<CharacterMgr.Preset> _selectedPresetList = new List<CharacterMgr.Preset>();
 
-		// Token: 0x04000054 RID: 84
+		// Token: 0x04000051 RID: 81
 		private int _selectedFilter;
 
-		// Token: 0x04000055 RID: 85
+		// Token: 0x04000052 RID: 82
 		private bool _isFavFilter;
 
-		// Token: 0x04000056 RID: 86
+		// Token: 0x04000053 RID: 83
 		public Dictionary<MPN, List<MenuInfo>> _mpnMenuListDictionary = new Dictionary<MPN, List<MenuInfo>>();
 
-		// Token: 0x04000057 RID: 87
+		// Token: 0x04000054 RID: 84
 		private int _selectedEyeClorType;
 
-		// Token: 0x04000058 RID: 88
+		// Token: 0x04000055 RID: 85
 		private bool _isFreeColor;
 
-		// Token: 0x04000059 RID: 89
+		// Token: 0x04000056 RID: 86
 		private bool _isForcedInit;
 
-		// Token: 0x0400005A RID: 90
+		// Token: 0x04000057 RID: 87
 		private bool _isStartUpLoadead;
 
-		// Token: 0x0400005B RID: 91
+		// Token: 0x04000058 RID: 88
 		private Dictionary<MPN, string> presetRestoreDic_ = new Dictionary<MPN, string>();
 
-		// Token: 0x0400005C RID: 92
+		// Token: 0x04000059 RID: 89
 		private List<string> _menuList = new List<string>();
 
-		// Token: 0x0400005D RID: 93
+		// Token: 0x0400005A RID: 90
 		private int _savePresetState;
 
-		// Token: 0x0400005E RID: 94
+		// Token: 0x0400005B RID: 91
 		private CharacterMgr.PresetType _targetSavePreset = CharacterMgr.PresetType.All;
 
-		// Token: 0x0400005F RID: 95
+		// Token: 0x0400005C RID: 92
 		private CharacterMgr.PresetType _selectedPresetType = CharacterMgr.PresetType.All;
 
-		// Token: 0x04000060 RID: 96
+		// Token: 0x0400005D RID: 93
 		private SavePreset _savepreset = new SavePreset();
 
-		// Token: 0x04000061 RID: 97
+		// Token: 0x0400005E RID: 94
 		private List<string> _myPatternList = new List<string>();
 
-		// Token: 0x0200000E RID: 14
+		// Token: 0x02000010 RID: 16
 		private class FolderMenu
 		{
-			// Token: 0x06000064 RID: 100 RVA: 0x00002275 File Offset: 0x00000475
+			// Token: 0x0600006D RID: 109 RVA: 0x00008603 File Offset: 0x00006803
 			public FolderMenu(string name, string[] categories)
 			{
 				this.Name = name;
 				this.Categories = categories;
 			}
 
-			// Token: 0x04000062 RID: 98
+			// Token: 0x04000070 RID: 112
 			public string Name = string.Empty;
 
-			// Token: 0x04000063 RID: 99
+			// Token: 0x04000071 RID: 113
 			public string[] Categories;
 		}
 	}

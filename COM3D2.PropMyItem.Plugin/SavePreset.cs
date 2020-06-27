@@ -5,28 +5,28 @@ using UnityEngine;
 
 namespace COM3D2.PropMyItem.Plugin
 {
-	// Token: 0x02000011 RID: 17
+	// Token: 0x0200000D RID: 13
 	public class SavePreset
 	{
-		// Token: 0x0600006A RID: 106 RVA: 0x00007FF0 File Offset: 0x000061F0
+		// Token: 0x06000063 RID: 99 RVA: 0x00007EC4 File Offset: 0x000060C4
 		public Texture2D ThumShot(Camera camera, Maid f_maid)
 		{
-			int num = 138;
-			int num2 = 200;
+			int width = 138;
+			int height = 200;
 			Transform transform = CMT.SearchObjName(f_maid.body0.m_Bones.transform, "Bip01 HeadNub", true);
 			camera.transform.position = transform.TransformPoint(transform.localPosition + new Vector3(0.38f, 1.07f, 0f));
 			camera.transform.rotation = transform.rotation * Quaternion.Euler(90f, 0f, 90f);
 			camera.fieldOfView = 30f;
-			RenderTexture renderTexture = new RenderTexture(num, num2, 24, 0);
+			RenderTexture renderTexture = new RenderTexture(width, height, 24, RenderTextureFormat.ARGB32);
 			renderTexture.filterMode = FilterMode.Bilinear;
 			renderTexture.antiAliasing = 8;
-			RenderTexture f_rtSub = new RenderTexture(num, num2, 0, 0);
-			Texture2D result = this.RenderThum(camera, renderTexture, f_rtSub, num, num2);
+			RenderTexture f_rtSub = new RenderTexture(width, height, 0, RenderTextureFormat.ARGB32);
+			Texture2D result = this.RenderThum(camera, renderTexture, f_rtSub, width, height);
 			this.Restore();
 			return result;
 		}
 
-		// Token: 0x0600006B RID: 107 RVA: 0x000080C0 File Offset: 0x000062C0
+		// Token: 0x06000064 RID: 100 RVA: 0x00007F94 File Offset: 0x00006194
 		public void SaveRestore()
 		{
 			this._savedPos = GameMain.Instance.MainCamera.GetTargetPos();
@@ -45,7 +45,7 @@ namespace COM3D2.PropMyItem.Plugin
 			this.isStock = true;
 		}
 
-		// Token: 0x0600006C RID: 108 RVA: 0x0000822C File Offset: 0x0000642C
+		// Token: 0x06000065 RID: 101 RVA: 0x00008100 File Offset: 0x00006300
 		public void Restore()
 		{
 			if (this.isStock)
@@ -61,7 +61,7 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x0600006D RID: 109 RVA: 0x00008320 File Offset: 0x00006520
+		// Token: 0x06000066 RID: 102 RVA: 0x000081F4 File Offset: 0x000063F4
 		public Texture2D RenderThum(Camera f_cam, RenderTexture f_rtMain, RenderTexture f_rtSub, int width, int height)
 		{
 			RenderTexture targetTexture = f_cam.targetTexture;
@@ -86,7 +86,7 @@ namespace COM3D2.PropMyItem.Plugin
 			return texture2D;
 		}
 
-		// Token: 0x0600006E RID: 110 RVA: 0x00008400 File Offset: 0x00006600
+		// Token: 0x06000067 RID: 103 RVA: 0x000082D4 File Offset: 0x000064D4
 		public CharacterMgr.Preset PresetSave(Maid f_maid, CharacterMgr.PresetType f_type)
 		{
 			CharacterMgr.Preset preset = new CharacterMgr.Preset();
@@ -132,7 +132,7 @@ namespace COM3D2.PropMyItem.Plugin
 			return preset;
 		}
 
-		// Token: 0x0600006F RID: 111 RVA: 0x0000855C File Offset: 0x0000675C
+		// Token: 0x06000068 RID: 104 RVA: 0x00008430 File Offset: 0x00006630
 		public string GetNewestFileName(string folderName)
 		{
 			string[] files = Directory.GetFiles(folderName, "*.preset", SearchOption.TopDirectoryOnly);
@@ -150,7 +150,7 @@ namespace COM3D2.PropMyItem.Plugin
 			return Path.GetFileName(path);
 		}
 
-		// Token: 0x06000070 RID: 112 RVA: 0x000085C0 File Offset: 0x000067C0
+		// Token: 0x06000069 RID: 105 RVA: 0x00008494 File Offset: 0x00006694
 		public byte[] LoadMenuInternal(string filename)
 		{
 			byte[] result;
@@ -172,7 +172,7 @@ namespace COM3D2.PropMyItem.Plugin
 			return result;
 		}
 
-		// Token: 0x06000071 RID: 113 RVA: 0x00008614 File Offset: 0x00006814
+		// Token: 0x0600006A RID: 106 RVA: 0x000084E8 File Offset: 0x000066E8
 		public int GetPriority(string fileName)
 		{
 			int result = 0;
@@ -210,43 +210,43 @@ namespace COM3D2.PropMyItem.Plugin
 			return result;
 		}
 
-		// Token: 0x04000068 RID: 104
+		// Token: 0x0400005F RID: 95
 		private float px;
 
-		// Token: 0x04000069 RID: 105
+		// Token: 0x04000060 RID: 96
 		private float py;
 
-		// Token: 0x0400006A RID: 106
+		// Token: 0x04000061 RID: 97
 		private float pz;
 
-		// Token: 0x0400006B RID: 107
+		// Token: 0x04000062 RID: 98
 		private float rx;
 
-		// Token: 0x0400006C RID: 108
+		// Token: 0x04000063 RID: 99
 		private float ry;
 
-		// Token: 0x0400006D RID: 109
+		// Token: 0x04000064 RID: 100
 		private float rz;
 
-		// Token: 0x0400006E RID: 110
+		// Token: 0x04000065 RID: 101
 		private float rw;
 
-		// Token: 0x0400006F RID: 111
+		// Token: 0x04000066 RID: 102
 		private float fov;
 
-		// Token: 0x04000070 RID: 112
+		// Token: 0x04000067 RID: 103
 		private string bg = string.Empty;
 
-		// Token: 0x04000071 RID: 113
+		// Token: 0x04000068 RID: 104
 		private bool isStock;
 
-		// Token: 0x04000072 RID: 114
+		// Token: 0x04000069 RID: 105
 		private Vector3 _savedPos;
 
-		// Token: 0x04000073 RID: 115
+		// Token: 0x0400006A RID: 106
 		private Vector2 _savedAngle;
 
-		// Token: 0x04000074 RID: 116
+		// Token: 0x0400006B RID: 107
 		private float _savedDistance = 1f;
 	}
 }

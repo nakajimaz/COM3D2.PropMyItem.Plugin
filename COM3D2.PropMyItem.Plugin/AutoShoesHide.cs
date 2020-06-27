@@ -7,25 +7,24 @@ namespace COM3D2.PropMyItem.Plugin
 	// Token: 0x02000002 RID: 2
 	public class AutoShoesHide
 	{
-		// Token: 0x06000001 RID: 1 RVA: 0x000022F0 File Offset: 0x000004F0
+		// Token: 0x06000001 RID: 1 RVA: 0x00002050 File Offset: 0x00000250
 		public AutoShoesHide()
 		{
-			this.checkMPNs = new MPN[] 
-			{	// 변환
-MPN.acchat	  ,
-MPN.headset	  ,
-MPN.wear	  ,
-MPN.skirt	  ,
-MPN.onepiece  ,
-MPN.mizugi	  ,
-MPN.bra		  ,
-MPN.panz	  ,
-MPN.stkg	  
-
+			this.checkMPNs = new MPN[]
+			{
+				MPN.acchat,
+				MPN.headset,
+				MPN.wear,
+				MPN.skirt,
+				MPN.onepiece,
+				MPN.mizugi,
+				MPN.bra,
+				MPN.panz,
+				MPN.stkg
 			};
 		}
 
-		// Token: 0x06000002 RID: 2 RVA: 0x00002348 File Offset: 0x00000548
+		// Token: 0x06000002 RID: 2 RVA: 0x000020A8 File Offset: 0x000002A8
 		public void Update()
 		{
 			try
@@ -101,10 +100,10 @@ MPN.stkg
 		// Token: 0x04000003 RID: 3
 		private MPN[] checkMPNs;
 
-		// Token: 0x02000003 RID: 3
+		// Token: 0x0200000F RID: 15
 		public class PropFileName
 		{
-			// Token: 0x06000003 RID: 3 RVA: 0x00002074 File Offset: 0x00000274
+			// Token: 0x0600006C RID: 108 RVA: 0x000085E6 File Offset: 0x000067E6
 			public PropFileName(int rid, string filename, string tmpFileName)
 			{
 				this.FileNameRID = rid;
@@ -112,13 +111,13 @@ MPN.stkg
 				this.TempFileName = tmpFileName;
 			}
 
-			// Token: 0x04000004 RID: 4
+			// Token: 0x0400006D RID: 109
 			public int FileNameRID;
 
-			// Token: 0x04000005 RID: 5
+			// Token: 0x0400006E RID: 110
 			public string FileName;
 
-			// Token: 0x04000006 RID: 6
+			// Token: 0x0400006F RID: 111
 			public string TempFileName;
 		}
 	}

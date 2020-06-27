@@ -6,12 +6,12 @@ using System.Xml.Serialization;
 
 namespace COM3D2.PropMyItem.Plugin
 {
-	// Token: 0x0200000C RID: 12
+	// Token: 0x0200000B RID: 11
 	public class Config
 	{
 		// Token: 0x17000017 RID: 23
-		// (get) Token: 0x0600003D RID: 61 RVA: 0x0000221C File Offset: 0x0000041C
-		// (set) Token: 0x0600003C RID: 60 RVA: 0x00002213 File Offset: 0x00000413
+		// (get) Token: 0x0600003C RID: 60 RVA: 0x00003243 File Offset: 0x00001443
+		// (set) Token: 0x0600003B RID: 59 RVA: 0x0000323A File Offset: 0x0000143A
 		public List<string> TargetBGList
 		{
 			get
@@ -25,8 +25,8 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000018 RID: 24
-		// (get) Token: 0x0600003F RID: 63 RVA: 0x0000222D File Offset: 0x0000042D
-		// (set) Token: 0x0600003E RID: 62 RVA: 0x00002224 File Offset: 0x00000424
+		// (get) Token: 0x0600003E RID: 62 RVA: 0x00003254 File Offset: 0x00001454
+		// (set) Token: 0x0600003D RID: 61 RVA: 0x0000324B File Offset: 0x0000144B
 		public List<SMenuInfo> MenuItems
 		{
 			get
@@ -40,7 +40,7 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000019 RID: 25
-		// (get) Token: 0x06000040 RID: 64 RVA: 0x0000335C File Offset: 0x0000155C
+		// (get) Token: 0x0600003F RID: 63 RVA: 0x0000325C File Offset: 0x0000145C
 		public static Config Instance
 		{
 			get
@@ -63,7 +63,7 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x06000042 RID: 66 RVA: 0x000033B8 File Offset: 0x000015B8
+		// Token: 0x06000041 RID: 65 RVA: 0x000032D8 File Offset: 0x000014D8
 		public void Load(string filePath)
 		{
 			try
@@ -83,7 +83,7 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x06000043 RID: 67 RVA: 0x00003450 File Offset: 0x00001650
+		// Token: 0x06000042 RID: 66 RVA: 0x00003370 File Offset: 0x00001570
 		public void SetDefault()
 		{
 			try
@@ -116,14 +116,14 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x06000044 RID: 68 RVA: 0x00003520 File Offset: 0x00001720
+		// Token: 0x06000043 RID: 67 RVA: 0x00003440 File Offset: 0x00001640
 		public void Save()
 		{
 			string filePath = Directory.GetCurrentDirectory() + "\\Sybaris\\UnityInjector\\Config\\PropMyItem.xml";
 			this.Save(filePath);
 		}
 
-		// Token: 0x06000045 RID: 69 RVA: 0x00003544 File Offset: 0x00001744
+		// Token: 0x06000044 RID: 68 RVA: 0x00003464 File Offset: 0x00001664
 		public void Save(string filePath)
 		{
 			try
@@ -139,13 +139,13 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x0400003A RID: 58
+		// Token: 0x04000037 RID: 55
 		private List<string> _targetBGList = new List<string>();
 
-		// Token: 0x0400003B RID: 59
+		// Token: 0x04000038 RID: 56
 		private List<SMenuInfo> _menuItems = new List<SMenuInfo>();
 
-		// Token: 0x0400003C RID: 60
+		// Token: 0x04000039 RID: 57
 		private static Config _config;
 	}
 }

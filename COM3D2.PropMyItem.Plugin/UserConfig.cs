@@ -6,12 +6,12 @@ using System.Xml.Serialization;
 
 namespace COM3D2.PropMyItem.Plugin
 {
-	// Token: 0x0200000B RID: 11
+	// Token: 0x0200000A RID: 10
 	public class UserConfig
 	{
 		// Token: 0x1700000D RID: 13
-		// (get) Token: 0x06000025 RID: 37 RVA: 0x0000214D File Offset: 0x0000034D
-		// (set) Token: 0x06000024 RID: 36 RVA: 0x00002144 File Offset: 0x00000344
+		// (get) Token: 0x06000024 RID: 36 RVA: 0x00002F6B File Offset: 0x0000116B
+		// (set) Token: 0x06000023 RID: 35 RVA: 0x00002F62 File Offset: 0x00001162
 		public string GuiVisibleKey
 		{
 			get
@@ -25,8 +25,8 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x1700000E RID: 14
-		// (get) Token: 0x06000027 RID: 39 RVA: 0x0000215E File Offset: 0x0000035E
-		// (set) Token: 0x06000026 RID: 38 RVA: 0x00002155 File Offset: 0x00000355
+		// (get) Token: 0x06000026 RID: 38 RVA: 0x00002F7C File Offset: 0x0000117C
+		// (set) Token: 0x06000025 RID: 37 RVA: 0x00002F73 File Offset: 0x00001173
 		public bool IsControlKey
 		{
 			get
@@ -40,8 +40,8 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x1700000F RID: 15
-		// (get) Token: 0x06000029 RID: 41 RVA: 0x0000216F File Offset: 0x0000036F
-		// (set) Token: 0x06000028 RID: 40 RVA: 0x00002166 File Offset: 0x00000366
+		// (get) Token: 0x06000028 RID: 40 RVA: 0x00002F8D File Offset: 0x0000118D
+		// (set) Token: 0x06000027 RID: 39 RVA: 0x00002F84 File Offset: 0x00001184
 		public bool IsAltKey
 		{
 			get
@@ -55,8 +55,8 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000010 RID: 16
-		// (get) Token: 0x0600002B RID: 43 RVA: 0x00002180 File Offset: 0x00000380
-		// (set) Token: 0x0600002A RID: 42 RVA: 0x00002177 File Offset: 0x00000377
+		// (get) Token: 0x0600002A RID: 42 RVA: 0x00002F9E File Offset: 0x0000119E
+		// (set) Token: 0x06000029 RID: 41 RVA: 0x00002F95 File Offset: 0x00001195
 		public bool IsShiftKey
 		{
 			get
@@ -70,8 +70,8 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000011 RID: 17
-		// (get) Token: 0x0600002D RID: 45 RVA: 0x00002191 File Offset: 0x00000391
-		// (set) Token: 0x0600002C RID: 44 RVA: 0x00002188 File Offset: 0x00000388
+		// (get) Token: 0x0600002C RID: 44 RVA: 0x00002FAF File Offset: 0x000011AF
+		// (set) Token: 0x0600002B RID: 43 RVA: 0x00002FA6 File Offset: 0x000011A6
 		public bool IsAutoShoesHide
 		{
 			get
@@ -85,8 +85,8 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000012 RID: 18
-		// (get) Token: 0x0600002F RID: 47 RVA: 0x000021A2 File Offset: 0x000003A2
-		// (set) Token: 0x0600002E RID: 46 RVA: 0x00002199 File Offset: 0x00000399
+		// (get) Token: 0x0600002E RID: 46 RVA: 0x00002FC0 File Offset: 0x000011C0
+		// (set) Token: 0x0600002D RID: 45 RVA: 0x00002FB7 File Offset: 0x000011B7
 		public bool IsOutputInfoLog
 		{
 			get
@@ -100,8 +100,8 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000013 RID: 19
-		// (get) Token: 0x06000031 RID: 49 RVA: 0x000021B3 File Offset: 0x000003B3
-		// (set) Token: 0x06000030 RID: 48 RVA: 0x000021AA File Offset: 0x000003AA
+		// (get) Token: 0x06000030 RID: 48 RVA: 0x00002FD1 File Offset: 0x000011D1
+		// (set) Token: 0x0600002F RID: 47 RVA: 0x00002FC8 File Offset: 0x000011C8
 		public List<string> FavList
 		{
 			get
@@ -115,8 +115,8 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000014 RID: 20
-		// (get) Token: 0x06000033 RID: 51 RVA: 0x000021C4 File Offset: 0x000003C4
-		// (set) Token: 0x06000032 RID: 50 RVA: 0x000021BB File Offset: 0x000003BB
+		// (get) Token: 0x06000032 RID: 50 RVA: 0x00002FE2 File Offset: 0x000011E2
+		// (set) Token: 0x06000031 RID: 49 RVA: 0x00002FD9 File Offset: 0x000011D9
 		public List<string> ColorLockList
 		{
 			get
@@ -130,8 +130,8 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000015 RID: 21
-		// (get) Token: 0x06000034 RID: 52 RVA: 0x000021CC File Offset: 0x000003CC
-		// (set) Token: 0x06000035 RID: 53 RVA: 0x000021D4 File Offset: 0x000003D4
+		// (get) Token: 0x06000033 RID: 51 RVA: 0x00002FEA File Offset: 0x000011EA
+		// (set) Token: 0x06000034 RID: 52 RVA: 0x00002FF2 File Offset: 0x000011F2
 		public List<string> FilterTextList
 		{
 			get
@@ -145,7 +145,7 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000016 RID: 22
-		// (get) Token: 0x06000036 RID: 54 RVA: 0x00003154 File Offset: 0x00001354
+		// (get) Token: 0x06000035 RID: 53 RVA: 0x00002FFC File Offset: 0x000011FC
 		public static UserConfig Instance
 		{
 			get
@@ -169,7 +169,7 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x06000038 RID: 56 RVA: 0x000031C0 File Offset: 0x000013C0
+		// Token: 0x06000037 RID: 55 RVA: 0x0000309C File Offset: 0x0000129C
 		public void Load(string filePath)
 		{
 			try
@@ -210,14 +210,14 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x06000039 RID: 57 RVA: 0x000032E8 File Offset: 0x000014E8
+		// Token: 0x06000038 RID: 56 RVA: 0x000031C4 File Offset: 0x000013C4
 		public void Save()
 		{
 			string filePath = Directory.GetCurrentDirectory() + "\\Sybaris\\UnityInjector\\Config\\PropMyItemUser.xml";
 			this.Save(filePath);
 		}
 
-		// Token: 0x0600003A RID: 58 RVA: 0x0000330C File Offset: 0x0000150C
+		// Token: 0x06000039 RID: 57 RVA: 0x000031E8 File Offset: 0x000013E8
 		public void Save(string filePath)
 		{
 			try
@@ -233,37 +233,37 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x0400002F RID: 47
+		// Token: 0x0400002C RID: 44
 		private const string DefaultGUIKey = "i";
 
-		// Token: 0x04000030 RID: 48
+		// Token: 0x0400002D RID: 45
 		private string _guiVisible = "i";
 
-		// Token: 0x04000031 RID: 49
+		// Token: 0x0400002E RID: 46
 		private bool _isControlKey;
 
-		// Token: 0x04000032 RID: 50
+		// Token: 0x0400002F RID: 47
 		private bool _isAltKey;
 
-		// Token: 0x04000033 RID: 51
+		// Token: 0x04000030 RID: 48
 		private bool _isShift;
 
-		// Token: 0x04000034 RID: 52
+		// Token: 0x04000031 RID: 49
 		private bool _isAutoShoesHide;
 
-		// Token: 0x04000035 RID: 53
+		// Token: 0x04000032 RID: 50
 		private bool _isOutputInfoLog;
 
-		// Token: 0x04000036 RID: 54
+		// Token: 0x04000033 RID: 51
 		private List<string> _favList = new List<string>();
 
-		// Token: 0x04000037 RID: 55
+		// Token: 0x04000034 RID: 52
 		private List<string> _colorDisableList = new List<string>();
 
-		// Token: 0x04000038 RID: 56
+		// Token: 0x04000035 RID: 53
 		private List<string> _filterTextList = new List<string>();
 
-		// Token: 0x04000039 RID: 57
+		// Token: 0x04000036 RID: 54
 		private static UserConfig _config;
 	}
 }

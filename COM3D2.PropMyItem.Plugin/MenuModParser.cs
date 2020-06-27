@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace COM3D2.PropMyItem.Plugin
 {
-	// Token: 0x02000008 RID: 8
+	// Token: 0x02000007 RID: 7
 	public class MenuModParser
 	{
-		// Token: 0x0600001C RID: 28 RVA: 0x00002A84 File Offset: 0x00000C84
+		// Token: 0x0600001B RID: 27 RVA: 0x00002894 File Offset: 0x00000A94
 		public static byte[] LoadMenuInternal(string filename)
 		{
 			byte[] result;
@@ -30,7 +30,7 @@ namespace COM3D2.PropMyItem.Plugin
 			return result;
 		}
 
-		// Token: 0x0600001D RID: 29 RVA: 0x00002AD8 File Offset: 0x00000CD8
+		// Token: 0x0600001C RID: 28 RVA: 0x000028E8 File Offset: 0x00000AE8
 		public static MenuInfo parseMod(string filePath)
 		{
 			MenuInfo menuInfo = new MenuInfo();
@@ -82,7 +82,7 @@ namespace COM3D2.PropMyItem.Plugin
 					binaryReader.ReadString();
 				}
 				string text = binaryReader.ReadString();
-				if (text.Contains("色セット"))//색상 세트
+				if (text.Contains("色セット"))
 				{
 					string[] array2 = text.Replace("\r\n", "\n").Split(new char[]
 					{
@@ -106,18 +106,18 @@ namespace COM3D2.PropMyItem.Plugin
 				{
 					string strA = binaryReader.ReadString();
 					int count = binaryReader.ReadInt32();
-					byte[] array4 = binaryReader.ReadBytes(count);
+					byte[] data = binaryReader.ReadBytes(count);
 					if (string.Compare(strA, menuInfo.IconName, true) == 0)
 					{
 						menuInfo.Icon = new Texture2D(1, 1, TextureFormat.RGBA32, false);
-						menuInfo.Icon.LoadImage(array4);
+						menuInfo.Icon.LoadImage(data);
 					}
 				}
 			}
 			return menuInfo;
 		}
 
-		// Token: 0x0600001E RID: 30 RVA: 0x00002D40 File Offset: 0x00000F40
+		// Token: 0x0600001D RID: 29 RVA: 0x00002B50 File Offset: 0x00000D50
 		public static MenuInfo ParseMenu(string filePath)
 		{
 			MenuInfo menuInfo = new MenuInfo();

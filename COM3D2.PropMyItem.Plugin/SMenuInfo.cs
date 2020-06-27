@@ -2,15 +2,15 @@
 
 namespace COM3D2.PropMyItem.Plugin
 {
-	// Token: 0x02000009 RID: 9
+	// Token: 0x02000008 RID: 8
 	public class SMenuInfo
 	{
-		// Token: 0x06000020 RID: 32 RVA: 0x00002F04 File Offset: 0x00001104
+		// Token: 0x0600001F RID: 31 RVA: 0x00002D14 File Offset: 0x00000F14
 		public SMenuInfo()
 		{
 		}
 
-		// Token: 0x06000021 RID: 33 RVA: 0x00002F54 File Offset: 0x00001154
+		// Token: 0x06000020 RID: 32 RVA: 0x00002D64 File Offset: 0x00000F64
 		public SMenuInfo(MenuInfo menuInfo)
 		{
 			this.ItemName = menuInfo.ItemName;
@@ -22,25 +22,25 @@ namespace COM3D2.PropMyItem.Plugin
 			this.MPN = menuInfo.MPN;
 		}
 
-		// Token: 0x04000014 RID: 20
+		// Token: 0x04000011 RID: 17
 		public string ItemName = string.Empty;
 
-		// Token: 0x04000015 RID: 21
+		// Token: 0x04000012 RID: 18
 		public string FileName = string.Empty;
 
-		// Token: 0x04000016 RID: 22
+		// Token: 0x04000013 RID: 19
 		public string IconName = string.Empty;
 
-		// Token: 0x04000017 RID: 23
+		// Token: 0x04000014 RID: 20
 		public float Priority;
 
-		// Token: 0x04000018 RID: 24
+		// Token: 0x04000015 RID: 21
 		public MPN ColorSetMPN = MPN.head;
 
-		// Token: 0x04000019 RID: 25
+		// Token: 0x04000016 RID: 22
 		public string ColorSetMenuName = string.Empty;
 
-		// Token: 0x0400001A RID: 26
+		// Token: 0x04000017 RID: 23
 		public MPN MPN = MPN.head;
 	}
 }

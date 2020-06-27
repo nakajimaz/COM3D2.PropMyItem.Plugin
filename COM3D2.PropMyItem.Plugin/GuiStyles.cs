@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace COM3D2.PropMyItem.Plugin
 {
-	// Token: 0x02000006 RID: 6
+	// Token: 0x02000005 RID: 5
 	public class GuiStyles
 	{
 		// Token: 0x17000001 RID: 1
-		// (get) Token: 0x0600000A RID: 10 RVA: 0x00002099 File Offset: 0x00000299
+		// (get) Token: 0x06000009 RID: 9 RVA: 0x0000249F File Offset: 0x0000069F
 		public static int FontSize
 		{
 			get
@@ -17,7 +17,7 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000002 RID: 2
-		// (get) Token: 0x0600000B RID: 11 RVA: 0x000020A0 File Offset: 0x000002A0
+		// (get) Token: 0x0600000A RID: 10 RVA: 0x000024A6 File Offset: 0x000006A6
 		public static float WindowHeight
 		{
 			get
@@ -27,7 +27,7 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000003 RID: 3
-		// (get) Token: 0x0600000C RID: 12 RVA: 0x000020A7 File Offset: 0x000002A7
+		// (get) Token: 0x0600000B RID: 11 RVA: 0x000024AD File Offset: 0x000006AD
 		public static float ScrollWidth
 		{
 			get
@@ -37,7 +37,7 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000004 RID: 4
-		// (get) Token: 0x0600000D RID: 13 RVA: 0x000020AE File Offset: 0x000002AE
+		// (get) Token: 0x0600000C RID: 12 RVA: 0x000024B4 File Offset: 0x000006B4
 		public static float ControlHeight
 		{
 			get
@@ -47,7 +47,7 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000005 RID: 5
-		// (get) Token: 0x0600000E RID: 14 RVA: 0x000020B8 File Offset: 0x000002B8
+		// (get) Token: 0x0600000D RID: 13 RVA: 0x000024BE File Offset: 0x000006BE
 		public static float Margin
 		{
 			get
@@ -57,7 +57,7 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000006 RID: 6
-		// (get) Token: 0x0600000F RID: 15 RVA: 0x00002738 File Offset: 0x00000938
+		// (get) Token: 0x0600000E RID: 14 RVA: 0x000024CC File Offset: 0x000006CC
 		public static GUIStyle WindowStyle
 		{
 			get
@@ -74,7 +74,7 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000007 RID: 7
-		// (get) Token: 0x06000010 RID: 16 RVA: 0x00002794 File Offset: 0x00000994
+		// (get) Token: 0x0600000F RID: 15 RVA: 0x00002528 File Offset: 0x00000728
 		public static GUIStyle LabelStyle
 		{
 			get
@@ -91,7 +91,7 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000008 RID: 8
-		// (get) Token: 0x06000011 RID: 17 RVA: 0x000027F0 File Offset: 0x000009F0
+		// (get) Token: 0x06000010 RID: 16 RVA: 0x00002584 File Offset: 0x00000784
 		public static GUIStyle TextFieldStyle
 		{
 			get
@@ -108,7 +108,7 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x17000009 RID: 9
-		// (get) Token: 0x06000012 RID: 18 RVA: 0x0000284C File Offset: 0x00000A4C
+		// (get) Token: 0x06000011 RID: 17 RVA: 0x000025E0 File Offset: 0x000007E0
 		public static GUIStyle ButtonStyle
 		{
 			get
@@ -125,7 +125,7 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x1700000A RID: 10
-		// (get) Token: 0x06000013 RID: 19 RVA: 0x000020C6 File Offset: 0x000002C6
+		// (get) Token: 0x06000012 RID: 18 RVA: 0x0000263B File Offset: 0x0000083B
 		public static GUIStyle ToggleStyle
 		{
 			get
@@ -140,7 +140,7 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x1700000B RID: 11
-		// (get) Token: 0x06000014 RID: 20 RVA: 0x000028A8 File Offset: 0x00000AA8
+		// (get) Token: 0x06000013 RID: 19 RVA: 0x0000266C File Offset: 0x0000086C
 		public static GUIStyle ListStyle
 		{
 			get
@@ -162,7 +162,7 @@ namespace COM3D2.PropMyItem.Plugin
 		}
 
 		// Token: 0x1700000C RID: 12
-		// (get) Token: 0x06000015 RID: 21 RVA: 0x000020F7 File Offset: 0x000002F7
+		// (get) Token: 0x06000014 RID: 20 RVA: 0x000027A5 File Offset: 0x000009A5
 		public static GUIStyle BoxStyle
 		{
 			get
@@ -175,34 +175,34 @@ namespace COM3D2.PropMyItem.Plugin
 			}
 		}
 
-		// Token: 0x0400000A RID: 10
+		// Token: 0x04000007 RID: 7
 		private static int _fontSize = 12;
 
-		// Token: 0x0400000B RID: 11
+		// Token: 0x04000008 RID: 8
 		private static float _windowHeight = 12f;
 
-		// Token: 0x0400000C RID: 12
+		// Token: 0x04000009 RID: 9
 		private static float _scrollWidth = 20f;
 
-		// Token: 0x0400000D RID: 13
+		// Token: 0x0400000A RID: 10
 		private static GUIStyle _windowStyle = null;
 
-		// Token: 0x0400000E RID: 14
+		// Token: 0x0400000B RID: 11
 		private static GUIStyle _labelStyle = null;
 
-		// Token: 0x0400000F RID: 15
+		// Token: 0x0400000C RID: 12
 		private static GUIStyle _textfieldStyle = null;
 
-		// Token: 0x04000010 RID: 16
+		// Token: 0x0400000D RID: 13
 		private static GUIStyle _buttonStyle = null;
 
-		// Token: 0x04000011 RID: 17
+		// Token: 0x0400000E RID: 14
 		private static GUIStyle _toggleStyle = null;
 
-		// Token: 0x04000012 RID: 18
+		// Token: 0x0400000F RID: 15
 		private static GUIStyle _listStyle = null;
 
-		// Token: 0x04000013 RID: 19
+		// Token: 0x04000010 RID: 16
 		private static GUIStyle _boxStyle = null;
 	}
 }
