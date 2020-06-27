@@ -30,7 +30,7 @@ namespace COM3D2.PropMyItem.Plugin
 				"顔",
 				"眉",
 				"目",
-				"目ハイライト",
+				"目ハイライト", //눈 하이라이트
 				"ほくろ",
 				"唇",
 				"歯"
@@ -51,11 +51,11 @@ namespace COM3D2.PropMyItem.Plugin
 				"アンダーヘア",
 				"ボディ"
 			}));
-			this._folders.Add(new PropMyItem.FolderMenu("服装", new string[]
+			this._folders.Add(new PropMyItem.FolderMenu("服装", new string[] //복장
 			{
 				"帽子",
 				"ヘッドドレス",
-				"トップス",
+				"トップス", //탑
 				"ボトムス",
 				"ワンピース",
 				"水着",
@@ -97,52 +97,54 @@ namespace COM3D2.PropMyItem.Plugin
 			}));
 			this._folders.Add(new PropMyItem.FolderMenu("全て", new string[0]));
 			this._folders.Add(new PropMyItem.FolderMenu("選択中", new string[0]));
-			this._categoryMPNDic.Add("顔", MPN.Yorime);
-			this._categoryMPNDic.Add("眉", MPN.accsenaka);
-			this._categoryMPNDic.Add("目", MPN.accashi);
-			this._categoryMPNDic.Add("目ハイライト", MPN.hairs);
-			this._categoryMPNDic.Add("ほくろ", MPN.head);
-			this._categoryMPNDic.Add("唇", MPN.hairr);
-			this._categoryMPNDic.Add("歯", MPN.facegloss);
-			this._categoryMPNDic.Add("前髪", MPN.MabutaUpIn);
-			this._categoryMPNDic.Add("後髪", MPN.MabutaUpIn2);
-			this._categoryMPNDic.Add("横髪", MPN.MabutaUpOut);
-			this._categoryMPNDic.Add("エクステ髪", MPN.MabutaUpMiddle);
-			this._categoryMPNDic.Add("アホ毛", MPN.MabutaUpOut2);
-			this._categoryMPNDic.Add("肌", MPN.accanl);
-			this._categoryMPNDic.Add("乳首", MPN.haircolor);
-			this._categoryMPNDic.Add("タトゥー", MPN.MabutaLowUpOut);
-			this._categoryMPNDic.Add("アンダーヘア", MPN.accshippo);
-			this._categoryMPNDic.Add("ボディ", MPN.MayuThick);
-			this._categoryMPNDic.Add("帽子", MPN.accmimi);
-			this._categoryMPNDic.Add("ヘッドドレス", MPN.chikubicolor);
-			this._categoryMPNDic.Add("トップス", MPN.hokuro);
-			this._categoryMPNDic.Add("ボトムス", MPN.mayu);
-			this._categoryMPNDic.Add("ワンピース", MPN.accnip);
-			this._categoryMPNDic.Add("水着", MPN.lip);
-			this._categoryMPNDic.Add("ブラジャー", MPN.eye);
-			this._categoryMPNDic.Add("パンツ", MPN.eye_hi);
-			this._categoryMPNDic.Add("靴下", MPN.eye_hi_r);
-			this._categoryMPNDic.Add("靴", MPN.chikubi);
-			this._categoryMPNDic.Add(" 前髪 ", MPN.futae);
-			this._categoryMPNDic.Add("メガネ", MPN.acchana);
-			this._categoryMPNDic.Add("アイマスク", MPN.nose);
-			this._categoryMPNDic.Add("鼻", MPN.matsuge_up);
-			this._categoryMPNDic.Add("耳", MPN.wear);
-			this._categoryMPNDic.Add("手袋", MPN.eyewhite);
-			this._categoryMPNDic.Add("ネックレス", MPN.mizugi);
-			this._categoryMPNDic.Add("チョーカー", MPN.bra);
-			this._categoryMPNDic.Add("リボン", MPN.matsuge_low);
-			this._categoryMPNDic.Add("\u3000乳首\u3000", MPN.skirt);
-			this._categoryMPNDic.Add("腕", MPN.stkg);
-			this._categoryMPNDic.Add("へそ", MPN.panz);
-			this._categoryMPNDic.Add("足首", MPN.shoes);
-			this._categoryMPNDic.Add("背中", MPN.headset);
-			this._categoryMPNDic.Add("しっぽ", MPN.glove);
-			this._categoryMPNDic.Add("前穴", MPN.acckamisub);
-			this._categoryMPNDic.Add("メイド服", MPN.acckubi);
-			this._categoryMPNDic.Add("コスチューム", MPN.acckubiwa);
-			this._categoryMPNDic.Add("下着", MPN.accheso);
+			// 변환 완료
+			this._categoryMPNDic.Add("顔", MPN.head);
+			this._categoryMPNDic.Add("眉", MPN.mayu);
+			this._categoryMPNDic.Add("目", MPN.eye);
+			this._categoryMPNDic.Add("目ハイライト", MPN.eye_hi);
+			this._categoryMPNDic.Add("ほくろ", MPN.eye_hi_r);
+			this._categoryMPNDic.Add("唇", MPN.lip);
+			this._categoryMPNDic.Add("歯", MPN.accha);
+			this._categoryMPNDic.Add("前髪", MPN.hairf);
+			this._categoryMPNDic.Add("後髪", MPN.hairr);
+			this._categoryMPNDic.Add("横髪", MPN.hairs);
+			this._categoryMPNDic.Add("エクステ髪", MPN.hairt);
+			this._categoryMPNDic.Add("アホ毛", MPN.hairaho);
+			this._categoryMPNDic.Add("肌", MPN.skin);
+			this._categoryMPNDic.Add("乳首", MPN.chikubi);
+			this._categoryMPNDic.Add("タトゥー", MPN.acctatoo);
+			this._categoryMPNDic.Add("アンダーヘア", MPN.underhair);
+			this._categoryMPNDic.Add("ボディ", MPN.body);
+			this._categoryMPNDic.Add("帽子", MPN.acchat);
+			this._categoryMPNDic.Add("ヘッドドレス", MPN.headset);
+			this._categoryMPNDic.Add("トップス", MPN.wear);
+			this._categoryMPNDic.Add("ボトムス", MPN.skirt);
+			this._categoryMPNDic.Add("ワンピース", MPN.onepiece);
+			this._categoryMPNDic.Add("水着", MPN.mizugi);
+			this._categoryMPNDic.Add("ブラジャー", MPN.bra);
+			this._categoryMPNDic.Add("パンツ", MPN.panz);
+			this._categoryMPNDic.Add("靴下", MPN.stkg);
+			this._categoryMPNDic.Add("靴", MPN.shoes);
+			this._categoryMPNDic.Add(" 前髪 ", MPN.acckami);
+			this._categoryMPNDic.Add("メガネ", MPN.megane);
+			this._categoryMPNDic.Add("アイマスク", MPN.acchead);
+			this._categoryMPNDic.Add("鼻", MPN.acchana);
+			this._categoryMPNDic.Add("耳", MPN.accmimi);
+			this._categoryMPNDic.Add("手袋", MPN.glove);
+			this._categoryMPNDic.Add("ネックレス", MPN.acckubi);
+			this._categoryMPNDic.Add("チョーカー", MPN.acckubiwa);
+			this._categoryMPNDic.Add("リボン", MPN.acckamisub);
+			this._categoryMPNDic.Add("\u3000乳首\u3000", MPN.accnip);
+			this._categoryMPNDic.Add("腕", MPN.accude);
+			this._categoryMPNDic.Add("へそ", MPN.accheso);
+			this._categoryMPNDic.Add("足首", MPN.accashi);
+			this._categoryMPNDic.Add("背中", MPN.accsenaka);
+			this._categoryMPNDic.Add("しっぽ", MPN.accshippo);
+			this._categoryMPNDic.Add("前穴", MPN.accxxx);
+			this._categoryMPNDic.Add("メイド服", MPN.set_maidwear);
+			this._categoryMPNDic.Add("コスチューム", MPN.set_mywear);
+			this._categoryMPNDic.Add("下着", MPN.set_underwear);
+
 			foreach (string text in this._categoryMPNDic.Keys)
 			{
 				this._menuMPNCategoryDic.Add(this._categoryMPNDic[text], text);
@@ -402,7 +404,7 @@ namespace COM3D2.PropMyItem.Plugin
 					this.guiSelectedMaid(ref margin, ref yPos);
 					this.guiSelectedCategoryFolder(ref margin, yPos, this._windowRect.height);
 					this.guiSelectedCategory(ref margin, yPos, this._windowRect.height);
-					if (this._folders[this._selectedFolder].Name == "プリセット")
+					if (this._folders[this._selectedFolder].Name == "プリセット") //프리셋
 					{
 						this.guiSelectedPreset(ref margin, yPos, this._windowRect.height);
 					}
@@ -412,7 +414,7 @@ namespace COM3D2.PropMyItem.Plugin
 					}
 					else
 					{
-						if (this._selectedMPN != MPN.null_mpn || this._folders[this._selectedFolder].Name == "全て" || this._folders[this._selectedFolder].Name == "選択中")
+						if (this._selectedMPN != MPN.null_mpn || this._folders[this._selectedFolder].Name == "全て" || this._folders[this._selectedFolder].Name == "選択中")//선택 중
 						{
 							this.guiSelectedItemFilter(margin, yPos);
 							this.guiSelectedItem(ref margin, yPos, this._windowRect.height);
@@ -594,7 +596,7 @@ namespace COM3D2.PropMyItem.Plugin
 						this._selectedItem = null;
 						this._selectedVariationItem = null;
 						this._scrollPosition.y = 0f;
-						MPN selectedMPN = MPN.Yorime;
+						MPN selectedMPN = MPN.head;
 						if (this._categoryMPNDic.TryGetValue(this._folders[this._selectedFolder].Categories[i], out selectedMPN))
 						{
 							this._selectedMPN = selectedMPN;
@@ -609,7 +611,7 @@ namespace COM3D2.PropMyItem.Plugin
 								{
 									this._selectedPresetType = CharacterMgr.PresetType.Wear;
 								}
-								else if (this._folders[this._selectedFolder].Categories[i] == "身体")
+								else if (this._folders[this._selectedFolder].Categories[i] == "身体") //신체
 								{
 									this._selectedPresetType = CharacterMgr.PresetType.Body;
 								}
@@ -685,13 +687,14 @@ namespace COM3D2.PropMyItem.Plugin
 							{
 								Maid maid = visibleMaidList[this._selectedMaid];
 								MPN[] array = new MPN[]
-								{
-									MPN.acchana,
-									MPN.futae,
-									MPN.matsuge_low,
-									MPN.MabutaUpMiddle,
-									MPN.chikubicolor,
-									MPN.accmimi
+								{  //변환
+MPN.megane		   ,
+MPN.acckami		   ,
+MPN.acckamisub	   ,
+MPN.hairt		   ,
+MPN.headset		   ,
+MPN.acchat
+
 								};
 								this.presetRestoreDic_.Clear();
 								foreach (MPN mpn in array)
@@ -711,12 +714,12 @@ namespace COM3D2.PropMyItem.Plugin
 							Maid maid2 = visibleMaidList2[this._selectedMaid];
 							MPN[] array3 = new MPN[]
 							{
-								MPN.acchana,
-								MPN.futae,
-								MPN.matsuge_low,
-								MPN.MabutaUpMiddle,
-								MPN.chikubicolor,
-								MPN.accmimi
+MPN.megane         ,
+MPN.acckami        ,
+MPN.acckamisub     ,
+MPN.hairt          ,
+MPN.headset        ,
+MPN.acchat
 							};
 							this.presetRestoreDic_.Clear();
 							foreach (MPN mpn2 in array3)
@@ -813,7 +816,10 @@ namespace COM3D2.PropMyItem.Plugin
 					while (enumerator.MoveNext())
 					{
 						MPN mpn = enumerator.Current;
-						if (mpn != MPN.acckubi && mpn != MPN.acckubiwa && mpn != MPN.accheso)
+						if (mpn != MPN.set_maidwear
+ && mpn != MPN.set_mywear
+ && mpn != MPN.set_underwear
+)
 						{
 							List<MenuInfo> list2 = null;
 							if (this._mpnMenuListDictionary.TryGetValue(mpn, out list2))
@@ -869,7 +875,7 @@ namespace COM3D2.PropMyItem.Plugin
 			float num7 = num6;
 			int num8 = itemList.Count;
 			int num9 = 0;
-			if (this._selectedMPN == MPN.acckubi || this._selectedMPN == MPN.acckubiwa || this._selectedMPN == MPN.accheso)
+			if (this._selectedMPN == MPN.set_maidwear || this._selectedMPN == MPN.set_mywear || this._selectedMPN == MPN.set_underwear)
 			{
 				num6 = 75f;
 				num7 = num6 * 1.44f;
@@ -1057,7 +1063,11 @@ namespace COM3D2.PropMyItem.Plugin
 										Console.WriteLine("PropMyItem：change item = " + menuInfo2.FileName);
 									}
 									visibleMaidList2[this._selectedMaid].SetProp(menuInfo2.MPN, menuInfo2.FileName, Path.GetFileName(menuInfo2.FileName).GetHashCode(), false, false);
-									if ((menuInfo2.MPN == MPN.accashi || menuInfo2.MPN == MPN.accsenaka || menuInfo2.MPN == MPN.accanl || menuInfo2.MPN == MPN.accshippo || menuInfo2.MPN == MPN.haircolor) && menuInfo2.ColorSetMenuList.Count > 0)
+									if ((menuInfo2.MPN == MPN.eye   ||
+										 menuInfo2.MPN == MPN.mayu ||
+										 menuInfo2.MPN == MPN.skin	||
+										 menuInfo2.MPN == MPN.underhair ||
+										 menuInfo2.MPN == MPN.chikubi) && menuInfo2.ColorSetMenuList.Count > 0)
 									{
 										MenuInfo menuInfo5 = this._selectedVariationItem.ColorSetMenuList[0];
 										visibleMaidList2[this._selectedMaid].SetProp(menuInfo2.ColorSetMPN, menuInfo5.FileName, Path.GetFileName(menuInfo5.FileName).GetHashCode(), false, false);
@@ -1174,7 +1184,11 @@ namespace COM3D2.PropMyItem.Plugin
 										Console.WriteLine("PropMyItem：change item = " + menuInfo2.FileName);
 									}
 									visibleMaidList3[this._selectedMaid].SetProp(menuInfo2.MPN, menuInfo2.FileName, Path.GetFileName(menuInfo2.FileName).GetHashCode(), false, false);
-									if ((menuInfo2.MPN == MPN.accashi || menuInfo2.MPN == MPN.accsenaka || menuInfo2.MPN == MPN.accanl || menuInfo2.MPN == MPN.accshippo || menuInfo2.MPN == MPN.haircolor) && menuInfo2.ColorSetMenuList.Count > 0)
+									if ((menuInfo2.MPN == MPN.eye ||
+										 menuInfo2.MPN == MPN.mayu ||
+										 menuInfo2.MPN == MPN.skin ||
+										 menuInfo2.MPN == MPN.underhair ||
+										 menuInfo2.MPN == MPN.chikubi) && menuInfo2.ColorSetMenuList.Count > 0)
 									{
 										MenuInfo menuInfo6 = this._selectedVariationItem.ColorSetMenuList[0];
 										visibleMaidList3[this._selectedMaid].SetProp(menuInfo2.ColorSetMPN, menuInfo6.FileName, Path.GetFileName(menuInfo6.FileName).GetHashCode(), false, false);
@@ -1188,7 +1202,10 @@ namespace COM3D2.PropMyItem.Plugin
 						if (count > 1)
 						{
 							Rect rect7 = new Rect(rect3.x + rect3.width - num, rect3.y + num3, 10f, 10f);
-							if (menuInfo2.MPN == MPN.acckubi || menuInfo2.MPN == MPN.acckubiwa || menuInfo2.MPN == MPN.accheso)
+							if (menuInfo2.MPN == MPN.set_maidwear
+ || menuInfo2.MPN == MPN.set_mywear
+ || menuInfo2.MPN == MPN.set_underwear
+)
 							{
 								rect7.Set(rect3.x + rect3.width - num2, rect3.y + num3, 10f, 10f);
 							}
@@ -1206,35 +1223,36 @@ namespace COM3D2.PropMyItem.Plugin
 				Rect rect8 = new Rect(0f, num16, num6 * 2f, num7);
 				Rect rect9 = new Rect(num6 * 3f, num16, num6 * 2f, num7);
 				MPN[] array = new MPN[]
-				{
-					MPN.accmimi,
-					MPN.chikubicolor,
-					MPN.hokuro,
-					MPN.mayu,
-					MPN.accnip,
-					MPN.lip,
-					MPN.eye,
-					MPN.eye_hi,
-					MPN.eye_hi_r,
-					MPN.chikubi,
-					MPN.futae,
-					MPN.acchana,
-					MPN.nose,
-					MPN.matsuge_up,
-					MPN.wear,
-					MPN.eyewhite,
-					MPN.mizugi,
-					MPN.bra,
-					MPN.matsuge_low,
-					MPN.skirt,
-					MPN.stkg,
-					MPN.panz,
-					MPN.shoes,
-					MPN.headset,
-					MPN.glove,
-					MPN.acckamisub
+				{	// 변환 완료
+					MPN.acchat	  ,
+					MPN.headset	  ,
+					MPN.wear	  ,
+					MPN.skirt	  ,
+					MPN.onepiece  ,
+					MPN.mizugi	  ,
+					MPN.bra		  ,
+					MPN.panz	  ,
+					MPN.stkg	  ,
+					MPN.shoes	  ,
+					MPN.acckami	  ,
+					MPN.megane	  ,
+					MPN.acchead	  ,
+					MPN.acchana	  ,
+					MPN.accmimi	  ,
+					MPN.glove	  ,
+					MPN.acckubi	  ,
+					MPN.acckubiwa ,
+					MPN.acckamisub,
+					MPN.accnip	  ,
+					MPN.accude	  ,
+					MPN.accheso	  ,
+					MPN.accashi	  ,
+					MPN.accsenaka ,
+					MPN.accshippo ,
+					MPN.accxxx
+
 				};
-				if (GUI.Button(rect8, "カラバリ変更(前)", GuiStyles.ButtonStyle) && maid != null)
+				if (GUI.Button(rect8, "카라 발리 변경(前)", GuiStyles.ButtonStyle) && maid != null)
 				{
 					foreach (MPN mpn in array)
 					{
@@ -1447,7 +1465,8 @@ namespace COM3D2.PropMyItem.Plugin
 					MaidParts.PARTS_COLOR parts_COLOR = MaidParts.PARTS_COLOR.SKIN;
 					MPN mpn = this._selectedItem.MPN;
 					switch (mpn)
-					{
+					{	// 변환 예정
+						// todo
 					case MPN.MabutaUpIn:
 					case MPN.MabutaUpIn2:
 					case MPN.MabutaUpMiddle:
@@ -1655,7 +1674,7 @@ namespace COM3D2.PropMyItem.Plugin
 				IL_CA:
 				if (dictionary.Count == 0)
 				{
-					Console.Write("PropMyItem：準備中...");
+					Console.Write("PropMyItem：준비 중...");
 				}
 				Dictionary<string, string> dictionary2 = new Dictionary<string, string>();
 				foreach (string text in UserConfig.Instance.FavList)
@@ -1683,7 +1702,7 @@ namespace COM3D2.PropMyItem.Plugin
 				Config.Instance.Save();
 				if (dictionary.Count == 0)
 				{
-					Console.WriteLine("PropMyItem：完了");
+					Console.WriteLine("PropMyItem：완료");
 				}
 				this._selectedFolder = 0;
 				this._selectedMPN = MPN.null_mpn;
@@ -1694,7 +1713,7 @@ namespace COM3D2.PropMyItem.Plugin
 				this._selectedItem = null;
 				this._selectedVariationItem = null;
 				this._scrollPosition.y = 0f;
-				MPN selectedMPN = MPN.Yorime;
+				MPN selectedMPN = MPN.head;
 				if (this._categoryMPNDic.TryGetValue(this._folders[this._selectedFolder].Categories[0], out selectedMPN))
 				{
 					this._selectedMPN = selectedMPN;
@@ -1768,6 +1787,9 @@ namespace COM3D2.PropMyItem.Plugin
 			string[] menuFiles = GameUty.MenuFiles;
 			this._menuList.Clear();
 			string[] files = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.menu", SearchOption.AllDirectories);
+
+			Console.WriteLine("GetMainMenuFiles:" + Directory.GetCurrentDirectory());
+
 			Dictionary<string, string> dictionary = new Dictionary<string, string>();
 			foreach (string text in files)
 			{
@@ -1776,6 +1798,10 @@ namespace COM3D2.PropMyItem.Plugin
 				{
 					dictionary.Add(key, text);
 				}
+
+				//Console.WriteLine("GetMainMenuFiles:" + key +","+ text);
+				//tomo_hairp.menu,F:\COM3D2\Mod\COM3D2_mod\세트 캐릭터\CG007\Tomo_Fujii\Tomo_hair\Tomo_hairP.menu
+
 			}
 			List<string> list = new List<string>();
 			foreach (string text2 in menuFiles)
@@ -1810,6 +1836,7 @@ namespace COM3D2.PropMyItem.Plugin
 									{
 										menuInfo.IsShopTarget = false;
 									}
+
 									string filePath = text2;
 									if (dictionary.TryGetValue(fileName, out filePath))
 									{
@@ -1821,6 +1848,7 @@ namespace COM3D2.PropMyItem.Plugin
 										menuInfo.IsMod = false;
 										menuInfo.FilePath = fileName;
 									}
+
 									string empty = string.Empty;
 									if (this._menuMPNCategoryDic.TryGetValue(menuInfo.MPN, out empty))
 									{

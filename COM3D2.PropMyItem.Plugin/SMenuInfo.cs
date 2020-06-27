@@ -35,12 +35,12 @@ namespace COM3D2.PropMyItem.Plugin
 		public float Priority;
 
 		// Token: 0x04000018 RID: 24
-		public MPN ColorSetMPN = MPN.Yorime;
+		public MPN ColorSetMPN = MPN.head;
 
 		// Token: 0x04000019 RID: 25
 		public string ColorSetMenuName = string.Empty;
 
 		// Token: 0x0400001A RID: 26
-		public MPN MPN = MPN.Yorime;
+		public MPN MPN = MPN.head;
 	}
 }

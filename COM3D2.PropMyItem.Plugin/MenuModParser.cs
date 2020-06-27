@@ -82,7 +82,7 @@ namespace COM3D2.PropMyItem.Plugin
 					binaryReader.ReadString();
 				}
 				string text = binaryReader.ReadString();
-				if (text.Contains("色セット"))
+				if (text.Contains("色セット"))//색상 세트
 				{
 					string[] array2 = text.Replace("\r\n", "\n").Split(new char[]
 					{

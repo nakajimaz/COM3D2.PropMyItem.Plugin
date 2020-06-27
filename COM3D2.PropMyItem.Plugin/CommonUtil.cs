@@ -86,15 +86,17 @@ namespace COM3D2.PropMyItem.Plugin
 			if (mpn != null)
 			{
 				MPN? mpn2 = mpn;
-				MPN mpn3 = MPN.acckubi;
+				MPN mpn3 = MPN.set_maidwear;
 				if (!(mpn2.GetValueOrDefault() == mpn3 & mpn2 != null))
 				{
 					mpn2 = mpn;
-					mpn3 = MPN.acckubiwa;
+					mpn3 = MPN.set_mywear;
+
 					if (!(mpn2.GetValueOrDefault() == mpn3 & mpn2 != null))
 					{
 						mpn2 = mpn;
-						mpn3 = MPN.accheso;
+						mpn3 = MPN.set_underwear;
+
 						if (!(mpn2.GetValueOrDefault() == mpn3 & mpn2 != null))
 						{
 							result = maid.GetProp(mpn.Value).strFileName;

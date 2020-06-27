@@ -40,7 +40,7 @@ namespace COM3D2.PropMyItem.Plugin
 		public Texture2D Icon;
 
 		// Token: 0x04000020 RID: 32
-		public MPN ColorSetMPN = MPN.Yorime;
+		public MPN ColorSetMPN = MPN.head;
 
 		// Token: 0x04000021 RID: 33
 		public string ColorSetMenuName = string.Empty;
@@ -55,7 +55,7 @@ namespace COM3D2.PropMyItem.Plugin
 		public int ColorNumber;
 
 		// Token: 0x04000025 RID: 37
-		public MPN MPN = MPN.Yorime;
+		public MPN MPN = MPN.head;
 
 		// Token: 0x04000026 RID: 38
 		public bool IsMod;

@@ -10,17 +10,18 @@ namespace COM3D2.PropMyItem.Plugin
 		// Token: 0x06000001 RID: 1 RVA: 0x000022F0 File Offset: 0x000004F0
 		public AutoShoesHide()
 		{
-			this.checkMPNs = new MPN[]
-			{
-				MPN.accmimi,
-				MPN.chikubicolor,
-				MPN.hokuro,
-				MPN.mayu,
-				MPN.accnip,
-				MPN.lip,
-				MPN.eye,
-				MPN.eye_hi,
-				MPN.eye_hi_r
+			this.checkMPNs = new MPN[] 
+			{	// 변환
+MPN.acchat	  ,
+MPN.headset	  ,
+MPN.wear	  ,
+MPN.skirt	  ,
+MPN.onepiece  ,
+MPN.mizugi	  ,
+MPN.bra		  ,
+MPN.panz	  ,
+MPN.stkg	  
+
 			};
 		}
 
@@ -48,7 +49,7 @@ namespace COM3D2.PropMyItem.Plugin
 										{
 											return;
 										}
-										if (maid.GetProp(MPN.chikubi).strTempFileName != "_i_shoes_del.menu")
+										if (maid.GetProp(MPN.shoes).strTempFileName != "_i_shoes_del.menu")
 										{
 											Menu.SetMaidItemTemp(maid, "_i_shoes_del.menu", true);
 											maid.AllProcProp();
@@ -73,9 +74,9 @@ namespace COM3D2.PropMyItem.Plugin
 										break;
 									}
 								}
-								if (flag && maid2.GetProp(MPN.chikubi).strTempFileName == "_i_shoes_del.menu")
+								if (flag && maid2.GetProp(MPN.shoes).strTempFileName == "_i_shoes_del.menu")
 								{
-									maid2.ResetProp(MPN.chikubi, false);
+									maid2.ResetProp(MPN.shoes, false);
 									maid2.AllProcProp();
 								}
 							}
